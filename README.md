@@ -1,126 +1,39 @@
-# Flask React Project
+# Spreaddit
 
-This is the starter for the Flask React project.
-
-## Getting started
-### Dev Containers (M1 Users, follow this guide)
-
-1. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. 
-2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer. 
-3. Clone the repository (only this branch)
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-4. Open the repo in VS Code. 
-5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner. 
-6. **Be Patient!** The initial install will take a LONG time, it's building a container that has postgres preconfigured and even installing all your project dependencies. (For both flask and react!)
-
-   **Note:** This will take much less time on future starts because everything will be cached.
-
-7. Once everything is up, be sure to make a `.env` file based on `.env.example` in both the root directory and the *react-app* directory before running your app. 
-
-8. Get into your pipenv, migrate your database, seed your database, and run your flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-9. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-<br>
-
-### Standard (Traditional)
-
-1. Clone this repository (only this branch)
-
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-
-2. Install dependencies
-
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
-
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
-
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
+Spreaddit is a loose clone of Reddit, a social posting board for any type of interest. Users can post and see posts by people they specifically curate and add as friends. Every post can be spread by any User and if your friend spreads you can see that post on any spread they are added to.
 
 
-*IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+## Features
+- Create an account, sign in, or log in as a demo user
+- Create, view, edit, and delete
+   - Posts
+   - Spreads
+   - Comments
+- Like, Unlike posts and comments
 
-## Helpful commands
-|    Command            |    Purpose    |
-| -------------         | ------------- |
-| `pipenv shell`        | Open your terminal in the virtual environment and be able to run flask commands without a prefix |
-| `pipenv run`          | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands  |
-| `flask db upgrade`    | Check in with the database and run any needed migrations  |
-| `flask db downgrade`  | Check in with the database and revert any needed migrations  |
-| `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
+Upcoming features:
+- Top spreads will be featured on the main page based off interactions.
+- Sub-Spreaddits for more specific content
 
-## Deploy to Heroku
+## Technologies Used
+- React
+- Redux
+- Python
+- PostgreSQL
+- Flask SQLAlchemy
 
-### Abstract
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations. 
+# Splash Page
+### From the splash page, one of the few pages accessible without authentication on my site, this allows users to access the main posts on the site but not any spreads. The logged out user will have access to signup and login forms to access the inner content of the site. A demo user will be provided for efficient log in.
+![image](https://user-images.githubusercontent.com/32913497/162892277-249b90a5-726f-4991-9d44-205a497efaa0.png)
 
-### Writing your Dockerfile
-In order for the Github action to work effectively, it must have a configured docker file. In order to effectively deploy your site you need to code out the notes found in this [docker file](./Dockerfile)
+# Posts
+### Any user can view these posts, they contain news articles and memes posted by members of the site.
+![image](https://user-images.githubusercontent.com/32913497/162892351-3bbad235-336c-4b45-8497-0ff191f72e01.png)
 
-### Configuring Production Environment Variables 
+# Spreads
+### Logged in users will be able to curate and view the spreads of their friends on the site. The top spreads on a logged in users friends list will be displayed on the main page. Spreads contain a more curated experience for the users viewing, one tailored to their group of friends.
+![image](https://user-images.githubusercontent.com/32913497/162892393-4a274961-7117-43cc-bf00-963c4303cf2f.png)
 
-1. In your Heroku app settings you should have two environment variables set. 
-
-   |    Key          |    Value    |
-   | -------------   | ----------- |
-   | `DATABASE_URL`  | Autogenerated when adding postgres to Heroku app |
-   | `SECRET_KEY`    | Random string full of entropy |
-
-2. In your Github Actions Secrets you should have two environment variables set. You can find this webpage at the following address: *github.com/userID/repoName/settings/secrets/actions*
-
-   |    Key            |    Value    |
-   | -------------     | ----------- |
-   | `HEROKU_API_KEY`  | Heroku Oauth Token |
-   | `HEROKU_APP_NAME` | Heroku app name    |
-
-3. To get an Oauth token for Heroku, run the following command in your terminal already authenticated to the Heroku CLI and pull out the string on the Token key. 
-   ```bash
-   heroku authorizations:create 
-   ```# QuickStarter
+# Account Page
+### The logged in user will be able to view his account information off the account page. Spreads they have created will be listed along with the friends they have. The user can unadd a friend and delete a spread off this page with ease.
+![image](https://user-images.githubusercontent.com/32913497/162892461-f96d814f-7fdb-49cd-8658-97f7760ead3e.png)
