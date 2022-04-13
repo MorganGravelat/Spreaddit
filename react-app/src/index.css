@@ -1,0 +1,17 @@
+/* TODO Add site wide styles */
+@font-face {
+    font-family: FrankfurterPlain;
+    src: url("./fonts/Oswald-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: MaisonNueBook;
+    src: url("./fonts/Oswald-Regular.ttf") format("truetype");
+}
+
+* {
+    text-decoration: none;
+} *:visited {
+    text-decoration: none;
+    color: white;
+}
