@@ -9,6 +9,7 @@ Spreaddit is a loose clone of Reddit, a social posting board for any type of int
    - Posts
    - Spreads
    - Comments
+   - Fun
 - Like, Unlike posts and comments
 
 Upcoming features:

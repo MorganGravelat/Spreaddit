@@ -1,7 +1,7 @@
 from .db import db
 
 class Spreadpost(db.Model):
-    __tablename__ = 'spreadlikes'
+    __tablename__ = 'spreadposts'
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id"), nullable=False)
     spread_id = db.Column(db.Integer, db.ForeignKey("spreads.id"), nullable=False)
