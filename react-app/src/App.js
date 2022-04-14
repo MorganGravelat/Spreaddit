@@ -7,6 +7,8 @@ import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import PostForm from './components/PostForm'
+import PostPage from './components/PostPage';
 import { authenticate } from './store/session';
 import Banner from './components/Banner/index';
 import SplashPage from './components/SplashPage/index';
@@ -36,6 +38,12 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/create-post' exact={true}>
+            <PostForm />
+        </Route>
+        <Route path='/posts/:postId' exact={true}>
+            <PostPage />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

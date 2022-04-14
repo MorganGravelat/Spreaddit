@@ -8,7 +8,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    height: 55px;
+    height: 100%;
     background-color: #a82727;
     border-bottom: 1px solid #444444;
 }
@@ -27,7 +27,7 @@ body {
     flex-direction: row;
     position: absolute;
     left: 1%
-} .banner-create-project {
+} .banner-create-post {
     margin-left: 20px;
 }
 
@@ -52,4 +52,26 @@ body {
 } .lower-nav-button {
     margin-left: 18px;
     margin-right: 18px;
+}
+.log-out-button {
+    font-size: 1.5rem;
+}
+.spreaddit-logo {
+    font-size: 1.5rem;
+}
+
+.top-nav-bar {
+    width: 100%;
+    height: 5rem;
+}
+
+.banner-left-side-div {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.banner-left-side-div * {
+ margin-left: 1rem;
+ font-size: 1.5rem;
 }

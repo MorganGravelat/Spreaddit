@@ -12,7 +12,7 @@ const LogoutButton = () => {
   return (
       <div className='banner-search nav-button'
         onClick={onLogout}>
-        <p>Log Out</p>
+        <p className="log-out-button">Log Out</p>
       </div>
   )
 };

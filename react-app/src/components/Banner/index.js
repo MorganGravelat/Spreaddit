@@ -1,8 +1,9 @@
 import BannerUpper from "./BannerUpper";
+import './style/banner-style.css'
 
 const Banner = () => {
     return (
-        <div>
+        <div className="top-nav-bar">
             <BannerUpper />
         </div>
     )
