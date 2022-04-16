@@ -3,8 +3,9 @@ const GET_POSTS = "spreads/GET_POSTS"
 const GET_ONE = "spreads/GET_ONE"
 const DELETE_ONE = "spreads/DELETE_ONE"
 const ADD_ONE = "spreads/ADD_ONE"
-const ADD_USER = "spread/ADD_USER"
-const ADD_POST = "spread/ADD_POST"
+const ADD_USER = "spreads/ADD_USER"
+const ADD_POST = "spreads/ADD_POST"
+const CHECK_SPREAD = "spreads/CHECK_SPREAD"
 
 const getOne = (spread) => ({
     type: GET_ONE,
@@ -33,6 +34,10 @@ const addUser = (spreadU) => ({
 const addPost = (spreadP) => ({
     type: ADD_POST,
     spreadP
+})
+const checkSpread = (check) => ({
+    type: CHECK_SPREAD,
+    check
 })
 
 export const getSpreads = (id) => async (dispatch) => {
@@ -123,10 +128,22 @@ export const addSpreadPost = (spreadP) => async (dispatch) => {
     }
 }
 
+export const checkSpreaded = (post_id,user_id) => async (dispatch) => {
+    console.log('LORD WE CHECKIN')
+    const response = await fetch(`api/spreads/check/${post_id}/${user_id}`);
+    if (response.ok) {
+        const check = await response.json();
+        console.log(check,'DID IT CHECK?')
+        dispatch(checkSpread(check))
+        return check
+    }
+}
+
 const initialState = {
     spreads: {},
     selected: {},
-    posts: {}
+    posts: {},
+    check: {}
 }
 
 const spreadReducer = (state = initialState, action) => {
@@ -158,6 +175,9 @@ const spreadReducer = (state = initialState, action) => {
             return state;
         case ADD_POST:
             return state;
+        case CHECK_SPREAD:
+            setState = {...state, check: {...action.check}}
+            return setState;
         default:
             return state;
     }
