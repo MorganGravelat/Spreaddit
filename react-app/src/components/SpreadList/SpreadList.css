@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 
-.post-list-container {
+.spread-list-container {
     display: flex;
-    flex-direction:column;
+    flex-direction:row;
     margin-top: 1rem;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 75%;
 }
-.post-div {
-    width: 80%;
+.spread-div {
+    width: 30rem;
     height: 27rem;
     margin: 1rem;
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
+    color: black;
     flex-direction: row;
     background: #797979;
     box-shadow: 0px 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
@@ -24,41 +25,64 @@
     box-sizing: border-box;
     border-radius: 2.4rem 2.4rem 2.4rem 2.4rem;
 }
+.spread-image {
+    color: black;
+    margin-bottom: 1rem;
+    border-radius: 2.4rem 2.4rem 2.4rem 2.4rem;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
 
-.post-title {
-    color: white;
+.spread-div-title {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-size: 2rem;
+}
+.spread-post-container {
+    width: 60%;
+}
+.post-spread-list-container {
+    width: 100%;
+}
+
+/* .spread-title {
+    color: black;
     align-self: center;
     margin-top: 4rem;
     margin-left: 2rem;
     margin-bottom: 4rem;
     font-family: 'KoHo', sans-serif;
 }
-.post-title > h3 {
+.spread-title > h3 {
     color: black;
     font-size: 2rem;
     letter-spacing: .1rem;
     font-weight: bolder;
     font-family: 'KoHo', sans-serif;
 }
-.post-detail-div {
+.spread-detail-div {
     display: flex;
     flex-direction:column;
     margin-left: 7rem;
     max-width: 75rem;
     width: 55%;
 }
-.post-image {
+.spread-image {
+    color: black;
     margin-bottom: 1rem;
     border-radius: 25%;
-    width: 100%;
-    max-height: 100%;
+    width: 20%;
+    max-height: 20%;
     display: block;
     object-fit: cover;
     max-width: 22rem;
 }
 
-.post-image-container {
-    width: 50%;
+.spread-image-container {
+    width: 10%;
     max-height: 100%;
     display: flex;
     padding-top: 3rem;
@@ -67,7 +91,7 @@
     justify-content: flex-end;
 }
 
-.post-description {
+.spread-description {
     align-self: flex-start;
     background-color: #E3FFFF;
     box-sizing: border-box;
@@ -85,6 +109,10 @@
     font-family: 'KoHo', sans-serif;
 }
 
+.space-between {
+    width: 15%;
+}
+
 .likes-bar {
     background-color: rgba(0, 0, 0, 0);
     border-radius: 2.4rem 2.4rem 2.4rem 2.4rem;
@@ -95,8 +123,4 @@
     align-items: center;
     flex-direction:column;
     margin-right: 6rem;
-}
-
-.space-between {
-    width: 15%;
-}
+} */

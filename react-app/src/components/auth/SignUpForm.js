@@ -7,8 +7,10 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [full_name, setFull_Name] = useState('');
+  const [image_url, setImage_Url] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -18,8 +20,8 @@ const SignUpForm = () => {
     //error validation
     setErrors([])
 
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+    if (password === confirmPassword) {
+      const data = await dispatch(signUp(username, email, full_name, image_url, password));
       if (data) {
         setErrors(data)
       }
@@ -27,7 +29,7 @@ const SignUpForm = () => {
 
     const newErrors = [];
 
-    if (password !== repeatPassword) {
+    if (password !== confirmPassword) {
       newErrors.push("Passwords do not match.")
     }
 
@@ -41,6 +43,14 @@ const SignUpForm = () => {
     setUsername(e.target.value);
   };
 
+  const updateFull_Name = (e) => {
+    setFull_Name(e.target.value);
+  };
+
+  const updateImage_Url = (e) => {
+    setImage_Url(e.target.value);
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -50,7 +60,7 @@ const SignUpForm = () => {
   };
 
   const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
+    setConfirmPassword(e.target.value);
   };
 
   if (user) {
@@ -97,7 +107,7 @@ const SignUpForm = () => {
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
-          value={repeatPassword}
+          value={confirmPassword}
           required={true}
         ></input>
       </div>

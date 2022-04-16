@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 import { getPost, deletePost } from "../../store/post";
+import { addSpreadPost } from "../../store/spread";
+import SpreadPost from "../Util/SpreadPost"
 import Modal from "react-modal"
 import './PostPage.css';
 
@@ -9,7 +11,8 @@ function PostPage() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { postId } = useParams();
-    const currentUser = useSelector((state) => state.session.user)
+    const currentUser = useSelector((state) => state.session.user);
+    const spreads = useSelector((state) => state.spread.spreads);
     const post = useSelector((state) => state.post.selected[postId]);
     let cPost = {...post}
     const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -29,12 +32,43 @@ function PostPage() {
         dispatch(getPost(postId))
     }, [dispatch, postId]);
 
+    const spreadPost = (currentUser,postId,spreads) => {
+        let user_id = currentUser.id;
+        let post_id = postId;
+        let spreadIdArr = SpreadPost(user_id,post_id,spreads);
+        for (let i = 0; i < spreadIdArr.length; i++) {
+            let spread_id = spreadIdArr[i];
+            const payload = {
+                spread_id,
+                post_id,
+                user_id,
+            };
+            dispatch(addSpreadPost(payload));
+        }
+    }
+
+    const showSpread = () => {
+        if (currentUser) {
+            return (
+                <div className="Post-btns">
+                    <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
+                        Spread!
+                    </button>
+                </div>
+            )
+        } else {
+            return (
+                <>
+                </>
+            );
+        }
+    }
     const showButtons = () => {
         if (!currentUser) return;
         if (currentUser.id === cPost?.user_id) {
             return (
                 <div className="Post-btns">
-                    <NavLink className="Post-Lower-btn" exact to={`/posts/${cPost?.id}/edit`}>
+                    <NavLink className="Post-Lower-btn" exact to={`/posts/edit/${cPost?.id}`}>
                         Edit
                     </NavLink>
                     {deleteButtons()}
@@ -139,6 +173,7 @@ function PostPage() {
                     {postImage()}
                     <div className="Post-Lower">
                         {showButtons()}
+                        {showSpread()}
                     </div>
                 </div>
             </div>

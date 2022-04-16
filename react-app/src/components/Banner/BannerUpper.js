@@ -15,6 +15,11 @@ const BannerUpper = () => {
                             <p>Create a post</p>
                         </div>
                     </NavLink>
+                    <NavLink to="/create-spread">
+                        <div className='banner-create-post nav-button'>
+                            <p>Create a spread</p>
+                        </div>
+                    </NavLink>
                 </>
             )
         }
@@ -49,7 +54,6 @@ const BannerUpper = () => {
         <div
             className='banner-upper-container'
         >
-            {/* TODO : Add link paths to nav buttons */}
             <div className='banner-left-side-div'>
                 <NavLink exact to="/">
                     <div>

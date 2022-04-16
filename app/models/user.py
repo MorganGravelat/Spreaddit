@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     postlikes = db.relationship("Postlike", back_populates="user", cascade="all, delete")
     spreads = db.relationship("Spread", back_populates="user", cascade="all, delete")
     spreadusers = db.relationship("Spreaduser", back_populates="user", cascade="all, delete")
+    spreadposts = db.relationship("Spreadpost", back_populates="user", cascade="all, delete")
 
     @property
     def password(self):

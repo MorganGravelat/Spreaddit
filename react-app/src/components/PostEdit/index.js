@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { addPost } from "../../store/post";
-import './PostForm.css';
+import { useHistory, useParams } from "react-router-dom";
+import { editPost } from "../../store/post";
+import './PostEdit.css';
 
-function PostForm() {
+function PostEdit() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user_id = useSelector((state) => state.session?.user.id)
+  const user_id = useSelector((state) => state.session?.user.id);
+  const { postId } = useParams();
+  const Cpost = useSelector((state) => state?.post.selected[postId]);
 
-  const [title, setTitle] = useState("");
-  const [post, setPost] = useState("");
-  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3')
+  const [title, setTitle] = useState(`${Cpost?.title}`);
+  const [post, setPost] = useState(`${Cpost?.post}`);
+  const [image_url, setImage_Url] = useState(`${Cpost?.image_url}`);
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -37,10 +39,12 @@ function PostForm() {
 
 
   const handleSubmit = async (e) => {
+    let id = postId
     e.preventDefault();
     setHasSubmitted(true);
     if (errors.length) return alert('Error Submitting.')
     const payload = {
+      id,
       title,
       post,
       image_url,
@@ -48,14 +52,15 @@ function PostForm() {
     };
     let createdPost
     try {
-      createdPost = await dispatch(addPost(payload));
+      createdPost = await dispatch(editPost(payload));
     } catch (error) {
       console.log("There is an error")
     }
     if (createdPost) {
       console.log(createdPost);
       setHasSubmitted(false);
-      history.push(`/`)
+      //history.push(`/posts/${createdPost.id}`)
+      history.push(`/posts/${postId}`)
     }
   };
 
@@ -108,4 +113,4 @@ function PostForm() {
   );
 };
 
-export default PostForm;
+export default PostEdit;

@@ -29,6 +29,18 @@ def create_post():
     print(newPost, "New Post Has Worked In the Route")
     return newPost.to_dict()
 
+@post_routes.route('/edit/<int:id>', methods=["PUT"])
+def edit_post(id):
+    post = dict(request.json)
+    data = Post.query.get(post['id'])
+
+    data.title = post['title'],
+    data.post = post['post'],
+    data.image_url = post['image_url'],
+
+    db.session.commit()
+    return data.to_dict()
+
 @post_routes.route('/delete/<int:id>', methods=['DELETE'])
 def delete_post(id):
     post = Post.query.get(id)

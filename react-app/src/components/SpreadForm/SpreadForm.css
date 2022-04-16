@@ -6,7 +6,7 @@
     max-width: 100%;
 }
 
-.create-post-form {
+.create-spread-form {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -55,14 +55,14 @@
     background-color: white;
 }
 
-.create-new-post-button {
+.create-new-spread-button {
     align-self: center;
     background-color: #44fff0;
     color: black;
     width: 30%;
 }
 
-.create-post-description {
+.create-spread-description {
     resize: none;
     background-color: #2b2b2b;
     border: 2px solid #444444;
@@ -75,7 +75,7 @@
     color: white;
 }
 
-.create-post-description:focus {
+.create-spread-description:focus {
     border: 2px solid #44fff0;
     outline: none;
 }
