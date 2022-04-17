@@ -14,4 +14,8 @@ class Spreaduser(db.Model):
         'id': self.id,
         'user_id': self.user_id,
         'spread_id': self.spread_id,
+        'spread_title': self.spreads.title,
+        'spread_image_url': self.spreads.image_url,
+        'spread_user_id': self.spreads.user_id,
+        'spread_created_at': self.spreads.created_at,
     }

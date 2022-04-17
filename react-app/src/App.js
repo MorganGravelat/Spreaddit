@@ -9,9 +9,12 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import PostForm from './components/PostForm'
 import PostPage from './components/PostPage';
+import PostEdit from './components/PostEdit';
 import { authenticate } from './store/session';
 import Banner from './components/Banner/index';
 import SplashPage from './components/SplashPage/index';
+import SpreadPage from './components/SpreadPage';
+import SpreadForm from './components/SpreadForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,8 +45,20 @@ function App() {
         <Route path='/create-post' exact={true}>
             <PostForm />
         </Route>
+        <Route path='/create-spread' exact={true}>
+            <SpreadForm />
+        </Route>
         <Route path='/posts/:postId' exact={true}>
             <PostPage />
+        </Route>
+        <Route path='/spread/:spreadId' exact={true}>
+            <SpreadPage />
+        </Route>
+        <Route path='/posts/:postId' exact={true}>
+            <PostPage />
+        </Route>
+        <Route path="/posts/edit/:postId" exact={true}>
+          <PostEdit />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

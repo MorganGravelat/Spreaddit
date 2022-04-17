@@ -1,20 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 import { getPost, deletePost } from "../../store/post";
+import { addSpreadPost, checkSpreaded } from "../../store/spread";
+import SpreadPost from "../Util/SpreadPost"
 import Modal from "react-modal"
 import './PostPage.css';
 
 function PostPage() {
+
     const dispatch = useDispatch();
     const history = useHistory();
     const { postId } = useParams();
-    const currentUser = useSelector((state) => state.session.user)
-    const post = useSelector((state) => state.post.selected[postId]);
+    const currentUser = useSelector((state) => state?.session?.user);
+    let user_id = currentUser?.id
+    let post_id = postId;
+    const spreads = useSelector((state) => state?.spread?.spreads);
+    const post = useSelector((state) => state?.post?.selected[postId]);
+    const checkVar = useSelector((state) => state?.spread?.check);
+    let spreaded;
+    console.log(checkVar, 'LET US SEE')
     let cPost = {...post}
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-    const [deletePrompt, setDeletePrompt] = useState(false);
-
+    const [modalIsOpen, setIsOpen] = React?.useState(false);
+    //const [deletePrompt, setDeletePrompt] = useState(false);
+    useEffect(()=> {
+        dispatch(checkSpreaded(post_id,user_id))
+    }, [dispatch, post, post_id, user_id])
+    const hasSpreaded = () => {
+        if (checkVar?.checks?.length) {
+            spreaded = true;
+            console.log(spreaded, checkVar)
+        } else {
+            spreaded = false;
+            console.log(spreaded)
+        }
+    }
+    hasSpreaded();
     const openModal = () => {
         setIsOpen(true);
         return;
@@ -24,17 +45,75 @@ function PostPage() {
         setIsOpen(false);
         return
     }
-
     useEffect(() => {
         dispatch(getPost(postId))
     }, [dispatch, postId]);
+    const spreadPost = (currentUser,postId,spreads) => {
+        user_id = currentUser?.id;
+        post_id = postId;
+        if (checkVar?.checks.length) {
+            console.log(checkVar,'something is broken you are viewing the spread')
+        } else {
+                let spreadIdArr = SpreadPost(user_id,post_id,spreads);
+            for (let i = 0; i < spreadIdArr.length; i++) {
+                let spread_id = spreadIdArr[i];
+                const payload = {
+                    spread_id,
+                    post_id,
+                    user_id,
+                };
+                dispatch(addSpreadPost(payload));
+                spreaded=true;
+            }
+        }
+        }
+    const unspreadPost = (currentUser,postId,spreads) => {
+        user_id = currentUser.id;
+        post_id = postId;
+        if (!checkVar.checks.length) {
+            console.log(checkVar,'Something is broken, you are viewing the unspread')
+        } else {
+            // const payload = {
+            //     post_id,
+            //     user_id,
+            // };
+            console.log('It worked')
+        }
+        }
 
+    const showSpread = () => {
+        if (currentUser) {
+            if (spreaded) {
+                return (
+                    <div className="Post-btns">
+                        <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
+                            Spread!
+                        </button>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="Post-btns">
+                        <button onClick={() => {unspreadPost(currentUser, postId,spreads);}}>
+                            Spread!!!!
+                        </button>
+                    </div>
+                )
+            }
+
+        } else {
+            return (
+                <>
+                </>
+            );
+        }
+    }
     const showButtons = () => {
         if (!currentUser) return;
         if (currentUser.id === cPost?.user_id) {
             return (
                 <div className="Post-btns">
-                    <NavLink className="Post-Lower-btn" exact to={`/posts/${cPost?.id}/edit`}>
+                    <NavLink className="Post-Lower-btn" exact to={`/posts/edit/${cPost?.id}`}>
                         Edit
                     </NavLink>
                     {deleteButtons()}
@@ -139,6 +218,7 @@ function PostPage() {
                     {postImage()}
                     <div className="Post-Lower">
                         {showButtons()}
+                        {showSpread()}
                     </div>
                 </div>
             </div>

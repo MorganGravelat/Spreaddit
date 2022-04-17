@@ -1,0 +1,34 @@
+.post-spread-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: -8rem;
+}
+.spread-post-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.post-div {
+    align-self: center;
+}
+
+.control-spread-div {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.spread-image-img {
+    border-radius : 11rem;
+}
+
+.spread-title-h1 {
+    margin-bottom: 2.5rem;
+}

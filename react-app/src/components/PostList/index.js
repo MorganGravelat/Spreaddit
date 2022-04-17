@@ -4,7 +4,7 @@ import { getPosts } from "../../store/post";
 import PostCard from "../PostCard";
 import "./post-list.css"
 
-const PostsList = ({}) => {
+const PostsList = () => {
     const dispatch = useDispatch();
     const posts = useSelector((state) => state?.post.posts);
     let postsArr = [];
