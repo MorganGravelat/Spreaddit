@@ -23,6 +23,8 @@ Upcoming features:
 - PostgreSQL
 - Flask SQLAlchemy
 
+# Installation
+
 # Splash Page
 ### From the splash page, one of the few pages accessible without authentication on my site, this allows users to access the main posts on the site but not any spreads. The logged out user will have access to signup and login forms to access the inner content of the site. A demo user will be provided for efficient log in.
 ![image](https://user-images.githubusercontent.com/32913497/162892277-249b90a5-726f-4991-9d44-205a497efaa0.png)
