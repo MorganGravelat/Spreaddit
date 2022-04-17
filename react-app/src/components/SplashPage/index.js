@@ -1,6 +1,6 @@
 import PostsList from '../PostList';
 import SpreadsList from '../SpreadList';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import './style/splash-page.css';
 
 const SplashPage = () => {

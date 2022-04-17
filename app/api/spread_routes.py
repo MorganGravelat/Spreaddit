@@ -68,3 +68,15 @@ def check_spreaded(post_id,user_id):
     checks = Spreadpost.query.filter(Spreadpost.post_id == post_id).filter(Spreadpost.user_id == user_id).all()
     print(checks,'AYO IT WORKS HAHAHAHAHAHAA CHECKS WORKED I LOVE IT')
     return {'checks': [check.to_dict() for check in checks]}
+
+@spread_routes.route('/delete', methods=['DELETE'])
+def delete_spreadpost():
+    data = dict(request.json)
+    post_id=data['post_id']
+    user_id=data['user_id']
+    res = {"id": id}
+    deletes = Spreadpost.query.filter(Spreadpost.post_id == post_id).filter(Spreadpost.user_id == user_id).all()
+    for delete in deletes:
+        db.session.delete(delete)
+    db.session.commit()
+    return res

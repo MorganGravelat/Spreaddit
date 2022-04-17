@@ -53,9 +53,9 @@ function SpreadForm() {
         user_id,
         spread_id,
     }
-    let postUser;
+    //let postUser;
     try {
-        postUser = await dispatch(addSpreadUser(oPayload))
+        await dispatch(addSpreadUser(oPayload))
     } catch (error) {
         console.log("There is an error")
     }

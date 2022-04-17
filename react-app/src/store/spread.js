@@ -130,7 +130,7 @@ export const addSpreadPost = (spreadP) => async (dispatch) => {
 
 export const checkSpreaded = (post_id,user_id) => async (dispatch) => {
     console.log('LORD WE CHECKIN')
-    const response = await fetch(`api/spreads/check/${post_id}/${user_id}`);
+    const response = await fetch(`/api/spreads/check/${post_id}/${user_id}`);
     if (response.ok) {
         const check = await response.json();
         console.log(check,'DID IT CHECK?')

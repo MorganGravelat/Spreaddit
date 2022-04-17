@@ -6,7 +6,7 @@ import Modal from "react-modal"
 import PostCard from "../PostCard";
 import "./SpreadPage.css"
 
-const SpreadPage = ({}) => {
+const SpreadPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { spreadId } = useParams();
@@ -29,7 +29,7 @@ const SpreadPage = ({}) => {
     useEffect(() => {
       dispatch(getSpreadPosts(spreadId));
       dispatch(getSpread(spreadId))
-    }, [dispatch]);
+    }, [dispatch, spreadId]);
 
     const showButtons = () => {
         if (!currentUser) return;
@@ -117,7 +117,7 @@ const SpreadPage = ({}) => {
     <div className='control-spread-div'>
         <h1 className="spread-title-h1">{`${spread?.title}`}</h1>
         <div>{showButtons()}</div>
-      <img className="spread-image-img"src={`${spread?.image_url}`} />
+      <img alt={`${spread?.title}`} className="spread-image-img"src={`${spread?.image_url}`} />
       <div className="post-spread-list-container">
         {postListMap()}
       </div>

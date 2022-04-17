@@ -93,6 +93,24 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
+        <label>Full Name</label>
+        <input
+          type='text'
+          name='full_name'
+          onChange={updateFull_Name}
+          value={full_name}
+        ></input>
+      </div>
+      <div>
+        <label>Image Url</label>
+        <input
+          type='text'
+          name='image_url'
+          onChange={updateImage_Url}
+          value={image_url}
+        ></input>
+      </div>
+      <div>
         <label>Password</label>
         <input
           type='password'

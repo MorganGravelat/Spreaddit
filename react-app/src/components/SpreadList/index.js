@@ -4,7 +4,7 @@ import { getSpreads } from "../../store/spread";
 import SpreadCard from "../SpreadCard";
 import "./SpreadList.css"
 
-const SpreadsList = ({}) => {
+const SpreadsList = () => {
     const dispatch = useDispatch();
     const spreads = useSelector((state) => state?.spread?.spreads);
     const currentUser = useSelector((state) => state.session.user);
@@ -12,7 +12,7 @@ const SpreadsList = ({}) => {
 
     useEffect(() => {
       dispatch(getSpreads(currentUser.id));
-    }, [dispatch]);
+    }, [dispatch, currentUser.id]);
     console.log(spreads, `SPREADSPREADSPREAD`)
     const spreadListMap = () => {
       if (spreads !== undefined) {

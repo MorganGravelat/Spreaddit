@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 import { getPost, deletePost } from "../../store/post";
@@ -8,20 +8,34 @@ import Modal from "react-modal"
 import './PostPage.css';
 
 function PostPage() {
-    let post_id;
-    let user_id;
+
     const dispatch = useDispatch();
     const history = useHistory();
     const { postId } = useParams();
     const currentUser = useSelector((state) => state?.session?.user);
+    let user_id = currentUser?.id
+    let post_id = postId;
     const spreads = useSelector((state) => state?.spread?.spreads);
     const post = useSelector((state) => state?.post?.selected[postId]);
     const checkVar = useSelector((state) => state?.spread?.check);
+    let spreaded;
     console.log(checkVar, 'LET US SEE')
     let cPost = {...post}
     const [modalIsOpen, setIsOpen] = React?.useState(false);
-    const [deletePrompt, setDeletePrompt] = useState(false);
-
+    //const [deletePrompt, setDeletePrompt] = useState(false);
+    useEffect(()=> {
+        dispatch(checkSpreaded(post_id,user_id))
+    }, [dispatch, post, post_id, user_id])
+    const hasSpreaded = () => {
+        if (checkVar?.checks?.length) {
+            spreaded = true;
+            console.log(spreaded, checkVar)
+        } else {
+            spreaded = false;
+            console.log(spreaded)
+        }
+    }
+    hasSpreaded();
     const openModal = () => {
         setIsOpen(true);
         return;
@@ -31,22 +45,16 @@ function PostPage() {
         setIsOpen(false);
         return
     }
-    useEffect(()=> {
-        user_id = currentUser?.id
-        post_id = postId;
-        dispatch(checkSpreaded(post_id,user_id))
-    }, [dispatch, post])
     useEffect(() => {
         dispatch(getPost(postId))
     }, [dispatch, postId]);
-
     const spreadPost = (currentUser,postId,spreads) => {
-        user_id = currentUser.id;
+        user_id = currentUser?.id;
         post_id = postId;
-        if (checkVar.checks.length) {
-            console.log(checkVar,'IT HAS IT HAS IT HAS IT HAS')
+        if (checkVar?.checks.length) {
+            console.log(checkVar,'something is broken you are viewing the spread')
         } else {
-                let spreadIdArr = SpreadPost(user_id,post_id,spreads); //I KNOW THIS IS FLAWED, THIS MUST BE CHANGED TO A SYSTEM WERE it does this check and alters the CSS OF THE SPREAD BUTTON AND CHANGES THE FUNCTIONALITY OFF OF THIS CHECK
+                let spreadIdArr = SpreadPost(user_id,post_id,spreads);
             for (let i = 0; i < spreadIdArr.length; i++) {
                 let spread_id = spreadIdArr[i];
                 const payload = {
@@ -55,19 +63,44 @@ function PostPage() {
                     user_id,
                 };
                 dispatch(addSpreadPost(payload));
+                spreaded=true;
             }
+        }
+        }
+    const unspreadPost = (currentUser,postId,spreads) => {
+        user_id = currentUser.id;
+        post_id = postId;
+        if (!checkVar.checks.length) {
+            console.log(checkVar,'Something is broken, you are viewing the unspread')
+        } else {
+            // const payload = {
+            //     post_id,
+            //     user_id,
+            // };
+            console.log('It worked')
         }
         }
 
     const showSpread = () => {
         if (currentUser) {
-            return (
-                <div className="Post-btns">
-                    <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
-                        Spread!
-                    </button>
-                </div>
-            )
+            if (spreaded) {
+                return (
+                    <div className="Post-btns">
+                        <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
+                            Spread!
+                        </button>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="Post-btns">
+                        <button onClick={() => {unspreadPost(currentUser, postId,spreads);}}>
+                            Spread!!!!
+                        </button>
+                    </div>
+                )
+            }
+
         } else {
             return (
                 <>
