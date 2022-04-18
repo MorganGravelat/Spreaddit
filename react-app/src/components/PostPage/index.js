@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 import { getPost, deletePost } from "../../store/post";
-import { addSpreadPost, checkSpreaded } from "../../store/spread";
+import { addSpreadPost, checkSpreaded, unSpread } from "../../store/spread";
 import SpreadPost from "../Util/SpreadPost"
 import Modal from "react-modal"
 import './PostPage.css';
@@ -30,7 +30,8 @@ function PostPage() {
         if (checkVar?.checks?.length) {
             spreaded = true;
             console.log(spreaded, checkVar)
-        } else {
+        }
+        if (!checkVar?.checks?.length) {
             spreaded = false;
             console.log(spreaded)
         }
@@ -40,6 +41,9 @@ function PostPage() {
         setIsOpen(true);
         return;
     }
+    useEffect( ()=> {
+        hasSpreaded();
+    }, [spreaded,checkVar,hasSpreaded])
 
     const closeModal = () => {
         setIsOpen(false);
@@ -51,7 +55,7 @@ function PostPage() {
     const spreadPost = (currentUser,postId,spreads) => {
         user_id = currentUser?.id;
         post_id = postId;
-        if (checkVar?.checks.length) {
+        if (checkVar?.checks?.length) {
             console.log(checkVar,'something is broken you are viewing the spread')
         } else {
                 let spreadIdArr = SpreadPost(user_id,post_id,spreads);
@@ -63,6 +67,7 @@ function PostPage() {
                     user_id,
                 };
                 dispatch(addSpreadPost(payload));
+                dispatch(checkSpreaded(post_id,user_id));
                 spreaded=true;
             }
         }
@@ -73,11 +78,8 @@ function PostPage() {
         if (!checkVar.checks.length) {
             console.log(checkVar,'Something is broken, you are viewing the unspread')
         } else {
-            // const payload = {
-            //     post_id,
-            //     user_id,
-            // };
-            console.log('It worked')
+            dispatch(unSpread(post_id,user_id));
+            spreaded=false;
         }
         }
 
@@ -86,16 +88,16 @@ function PostPage() {
             if (spreaded) {
                 return (
                     <div className="Post-btns">
-                        <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
-                            Spread!
+                        <button onClick={() => {unspreadPost(currentUser, postId,spreads);}}>
+                            Unspread!
                         </button>
                     </div>
                 )
             } else {
                 return (
                     <div className="Post-btns">
-                        <button onClick={() => {unspreadPost(currentUser, postId,spreads);}}>
-                            Spread!!!!
+                        <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
+                            Spread!
                         </button>
                     </div>
                 )
@@ -112,7 +114,7 @@ function PostPage() {
         if (!currentUser) return;
         if (currentUser.id === cPost?.user_id) {
             return (
-                <div className="Post-btns">
+                <div className={"Post-btns"}>
                     <NavLink className="Post-Lower-btn" exact to={`/posts/edit/${cPost?.id}`}>
                         Edit
                     </NavLink>

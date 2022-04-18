@@ -15,6 +15,7 @@ import Banner from './components/Banner/index';
 import SplashPage from './components/SplashPage/index';
 import SpreadPage from './components/SpreadPage';
 import SpreadForm from './components/SpreadForm';
+import ProfilePage from './components/ProfileButton/ProfilePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,6 +60,9 @@ function App() {
         </Route>
         <Route path="/posts/edit/:postId" exact={true}>
           <PostEdit />
+        </Route>
+        <Route path="/profile-page" exact={true}>
+          <ProfilePage />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

@@ -10,11 +10,22 @@ const SpreadPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { spreadId } = useParams();
-    const currentUser = useSelector((state) => state.session.user)
+    const currentUser = useSelector((state) => state.session.user);
     const posts = useSelector((state) => state?.spread.posts);
     const spread = useSelector((state => state?.spread.selected[spreadId]));
     const [modalIsOpen, setIsOpen] = React.useState(false);
     let postsArr = [];
+    let filteredvar = [];
+    let postfilterArr = [];
+    postsArr = Object.values(posts);
+    for (let i = 0; i < postsArr.length; i++) {
+        let ele = postsArr[i];
+        if (!postfilterArr.includes(ele.post_id)) {
+            postfilterArr.push(ele.post_id)
+            filteredvar.push(ele)
+        }
+    }
+
 
     const openModal = () => {
         setIsOpen(true);
@@ -105,7 +116,7 @@ const SpreadPage = () => {
       postsArr = Object.values(posts);
       return (
         <div className="spread-post-container">
-          {postsArr?.map((post) => (
+          {filteredvar?.map((post) => (
             <PostCard key={post?.id} post={post ? post : null} />
           ))}
         </div>

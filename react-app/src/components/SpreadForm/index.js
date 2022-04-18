@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addSpread, addSpreadUser } from "../../store/spread";
+import { addSpread, addSpreadUser, checkSpreadedPosts, addSpreadPost } from "../../store/spread";
 import './SpreadForm.css';
 
 function SpreadForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user_id = useSelector((state) => state.session?.user.id)
-
+  const spreaded = useSelector((state) => state?.spread?.spreaded)
 
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [title, setTitle] = useState("");
-  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3')
+  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3');
 
+  useEffect(() => {
+    dispatch(checkSpreadedPosts(user_id))
+  }, [dispatch])
+  let postsArr = [];
+  let postfilterArr = [];
+  postsArr = Object.values(spreaded);
+  for (let i = 0; i < postsArr.length; i++) {
+      let ele = postsArr[i];
+      if (!postfilterArr.includes(ele.post_id)) {
+          postfilterArr.push(ele.post_id)
+      }
+  }
 
+  console.log(spreaded,"THIS IS LIST OF POSTS SPREADED BY THIS USER");
   useEffect(() => {
     let errors = [];
     if (title) {
@@ -42,13 +55,13 @@ function SpreadForm() {
       image_url,
       user_id,
     };
-    let createdPost
+    let createdSpread
     try {
-      createdPost = await dispatch(addSpread(payload));
+      createdSpread = await dispatch(addSpread(payload));
     } catch (error) {
       console.log("There is an error")
     }
-    let spread_id = createdPost?.id
+    let spread_id = createdSpread?.id
     let oPayload = {
         user_id,
         spread_id,
@@ -59,9 +72,19 @@ function SpreadForm() {
     } catch (error) {
         console.log("There is an error")
     }
-    if (createdPost) {
-      console.log(createdPost);
-      setHasSubmitted(false);
+    if (createdSpread) {
+        console.log(createdSpread);
+        setHasSubmitted(false);
+        //spreaded_posts
+        for (let i = 0; i < postfilterArr.length; i++) {
+            let post_id = postfilterArr[i];
+            let pPayload = {
+                  spread_id,
+                  post_id,
+                  user_id
+            }
+            dispatch(addSpreadPost(pPayload));
+        }
       history.push(`/`)
     }
   };

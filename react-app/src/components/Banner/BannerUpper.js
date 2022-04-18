@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
+import ProfileButton from '../ProfileButton';
 import './style/banner-style.css'
 
 const BannerUpper = () => {
@@ -9,7 +10,7 @@ const BannerUpper = () => {
     const showCreateButton = (user) => {
         if (user) {
             return (
-                <>
+                <div className="create-button-div">
                     <NavLink to="/create-post">
                         <div className='banner-create-post nav-button'>
                             <p>Create a post</p>
@@ -20,7 +21,7 @@ const BannerUpper = () => {
                             <p>Create a spread</p>
                         </div>
                     </NavLink>
-                </>
+                </div>
             )
         }
         else { return null }
@@ -29,7 +30,10 @@ const BannerUpper = () => {
     let links;
     if (user) {
         links = (
-            <div className='banner-right-button-container'>
+            <div className="banner-right-side">
+                <NavLink className='profile-button-navlink' to="/profile-page">
+                    <ProfileButton />
+                </NavLink>
                 <LogoutButton />
             </div>
         )
@@ -55,14 +59,18 @@ const BannerUpper = () => {
             className='banner-upper-container'
         >
             <div className='banner-left-side-div'>
-                <NavLink exact to="/">
+                {showCreateButton(user)}
+                <div className="logo-button-div">
+                </div>
+            </div>
+            <div className="logo-button-div">
+                <NavLink className="logo-button" exact to="/">
                     <div>
                         <p className="spreaddit-logo">Spreaddit</p>
                     </div>
                 </NavLink>
-                {showCreateButton(user)}
-                {links}
             </div>
+            {links}
         </div>
     )
 };

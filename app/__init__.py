@@ -36,7 +36,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(spread_routes, url_prefix='/api/spreads')
-app.register_blueprint(spread_routes, url_prefix='/posts/api/spreads')
+#app.register_blueprint(spread_routes, url_prefix='/posts/api/spreads')
 db.init_app(app)
 Migrate(app, db)
 
