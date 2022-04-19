@@ -13,6 +13,19 @@ def friends(user_id):
     print(friends,user_id,"WHAT IS HAPPENING IN HERE? FRIENDS?")
     return {'friends': resArr}
 
+@friend_routes.route('/create', methods=['POST'])
+def create_friend():
+    data = dict(request.json)
+    newFriend = Friend(
+        requester_id=data['requester_id'],
+        requestee_id=data['requestee_id'],
+        accepted=False
+    )
+    db.session.add(newFriend)
+    db.session.commit()
+    print(newFriend.to_dict(), "New Friend Has Worked In the Route")
+    return newFriend.to_dict()
+
 @friend_routes.route('/delete', methods=['DELETE'])
 def delete_friend():
     friend = dict(request.json)
@@ -30,3 +43,22 @@ def delete_friend():
         db.session.delete(friend)
     db.session.commit()
     return res
+
+@friend_routes.route('/check/<int:user_id>/<int:friend_id>')
+def checkfriend(user_id, friend_id):
+    friends = Friend.query.filter(Friend.requester_id == user_id).filter(Friend.requestee_id == friend_id).first()
+    if friends:
+        return jsonify('True')
+    ofriends = Friend.query.filter(Friend.requestee_id == user_id).filter(Friend.requester_id == friend_id).first()
+    if ofriends:
+        return jsonify('True')
+    else:
+        return jsonify('False')
+
+@friend_routes.route('/edit/<int:id>', methods=["PUT"])
+def edit_friend(id):
+    friend = dict(request.json)
+    data = Friend.query.get(friend['id'])
+    data.accepted = True,
+    db.session.commit()
+    return data.to_dict()

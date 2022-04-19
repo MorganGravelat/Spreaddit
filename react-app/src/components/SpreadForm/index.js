@@ -17,7 +17,7 @@ function SpreadForm() {
 
   useEffect(() => {
     dispatch(checkSpreadedPosts(user_id))
-  }, [dispatch])
+  }, [dispatch, user_id])
   let postsArr = [];
   let postfilterArr = [];
   postsArr = Object.values(spreaded);
