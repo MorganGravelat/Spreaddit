@@ -15,4 +15,9 @@ class Friend(db.Model):
         'id': self.id,
         'requester_id': self.requester_id,
         'requestee_id': self.requestee_id,
+        'accepted': self.accepted,
+        'requester_username': self.req.full_name,
+        'requester_image_url': self.req.image_url,
+        'requestee_username': self.rec.full_name,
+        'requestee_image_url': self.rec.image_url,
     }
