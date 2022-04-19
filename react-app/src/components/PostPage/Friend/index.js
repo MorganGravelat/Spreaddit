@@ -27,16 +27,19 @@ function Friends({user_id, post_user_id, currentUser}) {
         return true;
     }
     const handleAdd = () => {
+        console.log('BEGINNING OF HANDLE ADD')
             // e.preventDefault();
             const payload = {
                 requestee_id: post_user_id,
                 requester_id: user_id
             };
             let createdPost;
+            console.log('BEFORE CREATED POST OF HANDLE ADD')
             createdPost = dispatch(addFriend(payload));
             if (createdPost) {
                 decider = true;
             }
+            console.log(createdPost,'END OF HANDLE ADD')
     };
     useEffect(()=> {
         dispatch(isFriendCheck({'user_id':user_id, 'friend_id':post_user_id}))

@@ -51,7 +51,7 @@ const ProfilePage = () => {
               <h1>{`${currentUser?.full_name}`}</h1>
           </div>
           <div className="profile-image-div">
-              <img alt={currentUser.full_name} src={`${currentUser?.image_url}`}></img>
+              <img alt={currentUser?.full_name} src={`${currentUser?.image_url}`}></img>
           </div>
           <div className="friends-label-div">
               <h2>Friends</h2>

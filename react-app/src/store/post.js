@@ -27,7 +27,7 @@ const editOne = (post) => ({
 })
 
 export const getPosts = () => async (dispatch) => {
-    const response = await fetch(`/api/posts`)
+    const response = await fetch(`/api/posts/`)
     if (response.ok) {
         const posts = await response.json();
         dispatch(load(posts))

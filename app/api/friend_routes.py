@@ -55,10 +55,12 @@ def checkfriend(user_id, friend_id):
     else:
         return jsonify('False')
 
-@friend_routes.route('/edit/<int:id>', methods=["PUT"])
-def edit_friend(id):
-    friend = dict(request.json)
-    data = Friend.query.get(friend['id'])
-    data.accepted = True,
+@friend_routes.route('/edit', methods=["PUT"])
+def edit_friend():
+    friendInfo = dict(request.json)
+    user_id = friendInfo['user_id']
+    friend_id = friendInfo['friend_id']
+    data = Friend.query.filter(Friend.requestee_id == user_id).filter(Friend.requester_id == friend_id).first()
+    data.accepted = True
     db.session.commit()
     return data.to_dict()

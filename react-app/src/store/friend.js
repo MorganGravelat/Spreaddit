@@ -2,6 +2,7 @@ const LOAD = "friends/LOAD"
 const DELETE_ONE = "friends/DELETE_ONE"
 const IS_FRIEND = "friends/IS_FRIEND"
 const ADD_ONE = "friends/ADD_ONE"
+const EDIT_ONE = "friends/EDIT_ONE"
 
 const load = (friends) => ({
     type: LOAD,
@@ -21,6 +22,11 @@ const addOne = (friend) => ({
 const isFriend = (isFriendRes) => ({
     type: IS_FRIEND,
     isFriendRes
+})
+
+const editOne = (editFriend) => ({
+    type: EDIT_ONE,
+    editFriend
 })
 
 export const getFriends = (user_id) => async (dispatch) => {
@@ -71,6 +77,20 @@ export const isFriendCheck = (twoIds) => async (dispatch) => {
     }
 }
 
+export const editFriend = (friend) => async (dispatch) => {
+    const response = await fetch(`/api/friends/edit`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(friend)
+    });
+    if (response.ok) {
+        const editFriend = await response.json();
+        dispatch(editOne(editFriend))
+        return editFriend;
+    }
+}
 
 
 
@@ -89,6 +109,9 @@ const friendReducer = (state = initialState, action) => {
                 allFriends[friend?.id] = friend
             })
             setState.friends = allFriends
+            return setState
+        case EDIT_ONE:
+            setState = {...state, friends: {...state.friends, [action.editFriend.id]: action.editFriend}}
             return setState
         case ADD_ONE:
             setState = {...state, friends: {...state.friends, [action.friend.id]: action.friend}}
