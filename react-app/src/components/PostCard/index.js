@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 const PostCard = ({post}) => {
     return (
         <div className="post-div" key={post?.id}>
-            <div className="likes-bar">
+            {/* <div className="likes-bar">
                 <h1>👍</h1>
                 <h1>10</h1>
                 <h1>👎</h1>
-            </div>
+            </div> */}
             <div className="post-detail-div">
               <NavLink  className="post-title"exact to={`/posts/${post.post_id ? post?.post_id : post?.id}`}>
                 <h3 style={{margin: "10px 0px 0px 0px"}}>{post.title ? post?.title : post?.post_title}</h3>

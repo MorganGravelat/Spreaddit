@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, NavLink } from "react-router-dom";
 import { addSpreadPost, checkSpreaded, unSpread } from "../../../store/spread";
 import SpreadPost from "../../Util/SpreadPost"
-import Modal from "react-modal"
+
 
 function Spreads({postId, postuser_id, currentUser}) {
     const dispatch = useDispatch();
-    const history = useHistory();
+
 
     const spreads = useSelector((state) => state?.spread?.spreads);
     let user_id = currentUser?.id
     let post_id = postId
-    let post_user_id = postuser_id
+    //let post_user_id = postuser_id
     let spreaded;
     let checkVar = useSelector((state) => state?.spread?.check);
     useEffect(()=> {

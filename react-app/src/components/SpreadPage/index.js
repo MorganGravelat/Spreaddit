@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getSpreadPosts, getSpread, deleteSpread } from "../../store/spread";
 import Modal from "react-modal"
 import PostCard from "../PostCard";
+import SpreadFriends from "./SpreadFriends";
 import "./SpreadPage.css"
 
 const SpreadPage = () => {
@@ -47,7 +48,7 @@ const SpreadPage = () => {
         if (currentUser?.id === spread?.user_id) {
             return (
                 <div className="Post-btns">
-                    <NavLink className="Post-Lower-btn" exact to={`/spreads/edit/${spread?.id}`}>
+                    <NavLink className="Post-Lower-btn" exact to={`/spread/edit/${spread?.id}`}>
                         Edit
                     </NavLink>
                     {deleteButtons()}
@@ -128,6 +129,7 @@ const SpreadPage = () => {
     <div className='control-spread-div'>
         <h1 className="spread-title-h1">{`${spread?.title}`}</h1>
         <div>{showButtons()}</div>
+        <SpreadFriends />
       <img alt={`${spread?.title}`} className="spread-image-img"src={`${spread?.image_url}`} />
       <div className="post-spread-list-container">
         {postListMap()}

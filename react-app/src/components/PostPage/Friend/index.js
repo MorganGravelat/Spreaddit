@@ -1,6 +1,6 @@
 import { isFriendCheck, addFriend } from "../../../store/friend";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import React, { useEffect } from "react";
 
 function Friends({user_id, post_user_id, currentUser}) {

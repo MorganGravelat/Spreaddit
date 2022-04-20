@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 import { getPost, deletePost } from "../../store/post";
-import { addSpreadPost, checkSpreaded, unSpread } from "../../store/spread";
-import { isFriendCheck, addFriend } from "../../store/friend";
-import ProfileButton from '../ProfileButton';
-import SpreadPost from "../Util/SpreadPost"
+import { checkSpreaded } from "../../store/spread";
+import { isFriendCheck } from "../../store/friend";
 import Modal from "react-modal"
 import Spreads from "./Spread";
 import Friends from "./Friend";
@@ -19,7 +17,7 @@ function PostPage() {
     const currentUser = useSelector((state) => state?.session?.user);
     let user_id = currentUser?.id
     let post_id = postId;
-    const spreads = useSelector((state) => state?.spread?.spreads);
+    //const spreads = useSelector((state) => state?.spread?.spreads);
     const post = useSelector((state) => state?.post?.selected[postId]);
     let post_user_id = post?.user_id
     const FriendCheck = useSelector((state) => state?.friend?.check[0]);
@@ -40,7 +38,7 @@ function PostPage() {
     useEffect(()=> {
         dispatch(checkSpreaded(post_id,user_id))
         dispatch(isFriendCheck({'user_id':user_id, 'friend_id':post_user_id}))
-    }, [dispatch, post, post_id, user_id, decider])
+    }, [dispatch, post, post_id, user_id, decider, post_user_id])
     const hasSpreaded = () => {
         if (checkVar?.checks?.length) {
             spreaded = true;
@@ -66,90 +64,90 @@ function PostPage() {
     }
     useEffect(() => {
         dispatch(getPost(postId))
-    }, [dispatch, post_id]);
+    }, [dispatch, post_id, postId]);
 
-    const spreadPost = (currentUser,postId,spreads) => {
-        user_id = currentUser?.id;
-        post_id = postId;
-        if (checkVar?.checks?.length) {
-            console.log(checkVar,'something is broken you are viewing the spread')
-        } else {
-                let spreadIdArr = SpreadPost(user_id,post_id,spreads);
-            for (let i = 0; i < spreadIdArr.length; i++) {
-                let spread_id = spreadIdArr[i];
-                const payload = {
-                    spread_id,
-                    post_id,
-                    user_id,
-                };
-                dispatch(addSpreadPost(payload));
-                dispatch(checkSpreaded(post_id,user_id));
-                spreaded=true;
-            }
-        }
-    }
-    const add_friend = () => {
-        if (!currentUser) {
-            return false;
-        }
-        if (parseInt(user_id) === parseInt(post_user_id)) {
-            return false;
-        }
-        if (decider) {
-            return false;
-        }
-        return true;
-    }
-    const handleAdd = () => {
-            // e.preventDefault();
-            const payload = {
-                requestee_id: post_user_id,
-                requester_id: user_id
-            };
-            let createdPost;
-            createdPost = dispatch(addFriend(payload));
-            if (createdPost) {
-                decider = true;
-            }
-    };
-    const unspreadPost = (currentUser,postId,spreads) => {
-        user_id = currentUser.id;
-        post_id = postId;
-        if (!checkVar.checks.length) {
-            console.log(checkVar,'Something is broken, you are viewing the unspread')
-        } else {
-            dispatch(unSpread(post_id,user_id));
-            spreaded=false;
-        }
-    }
+    // const spreadPost = (currentUser,postId,spreads) => {
+    //     user_id = currentUser?.id;
+    //     post_id = postId;
+    //     if (checkVar?.checks?.length) {
+    //         console.log(checkVar,'something is broken you are viewing the spread')
+    //     } else {
+    //             let spreadIdArr = SpreadPost(user_id,post_id,spreads);
+    //         for (let i = 0; i < spreadIdArr.length; i++) {
+    //             let spread_id = spreadIdArr[i];
+    //             const payload = {
+    //                 spread_id,
+    //                 post_id,
+    //                 user_id,
+    //             };
+    //             dispatch(addSpreadPost(payload));
+    //             dispatch(checkSpreaded(post_id,user_id));
+    //             spreaded=true;
+    //         }
+    //     }
+    // }
+    // const add_friend = () => {
+    //     if (!currentUser) {
+    //         return false;
+    //     }
+    //     if (parseInt(user_id) === parseInt(post_user_id)) {
+    //         return false;
+    //     }
+    //     if (decider) {
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    // const handleAdd = () => {
+    //         // e.preventDefault();
+    //         const payload = {
+    //             requestee_id: post_user_id,
+    //             requester_id: user_id
+    //         };
+    //         let createdPost;
+    //         createdPost = dispatch(addFriend(payload));
+    //         if (createdPost) {
+    //             decider = true;
+    //         }
+    // };
+    // const unspreadPost = (currentUser,postId,spreads) => {
+    //     user_id = currentUser.id;
+    //     post_id = postId;
+    //     if (!checkVar.checks.length) {
+    //         console.log(checkVar,'Something is broken, you are viewing the unspread')
+    //     } else {
+    //         dispatch(unSpread(post_id,user_id));
+    //         spreaded=false;
+    //     }
+    // }
 
-    const showSpread = () => {
-        if (currentUser) {
-            if (spreaded) {
-                return (
-                    <div className="Post-btns">
-                        <button onClick={() => {unspreadPost(currentUser, postId,spreads);}}>
-                            Unspread!
-                        </button>
-                    </div>
-                )
-            } else {
-                return (
-                    <div className="Post-btns">
-                        <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
-                            Spread!
-                        </button>
-                    </div>
-                )
-            }
+    // const showSpread = () => {
+    //     if (currentUser) {
+    //         if (spreaded) {
+    //             return (
+    //                 <div className="Post-btns">
+    //                     <button onClick={() => {unspreadPost(currentUser, postId,spreads);}}>
+    //                         Unspread!
+    //                     </button>
+    //                 </div>
+    //             )
+    //         } else {
+    //             return (
+    //                 <div className="Post-btns">
+    //                     <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
+    //                         Spread!
+    //                     </button>
+    //                 </div>
+    //             )
+    //         }
 
-        } else {
-            return (
-                <>
-                </>
-            );
-        }
-    }
+    //     } else {
+    //         return (
+    //             <>
+    //             </>
+    //         );
+    //     }
+    // }
     const showButtons = () => {
         if (!currentUser) return;
         if (currentUser.id === cPost?.user_id) {

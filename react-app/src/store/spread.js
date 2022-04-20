@@ -8,6 +8,7 @@ const ADD_USER = "spreads/ADD_USER"
 const ADD_POST = "spreads/ADD_POST"
 const CHECK_SPREAD = "spreads/CHECK_SPREAD"
 const CHECK_USER_SPREAD = "spreads/CHECK_USER_SPREAD"
+const EDIT_ONE = "spreads/EDIT_ONE"
 
 const getOne = (spread) => ({
     type: GET_ONE,
@@ -16,6 +17,10 @@ const getOne = (spread) => ({
 const load = (spreads) => ({
     type: LOAD,
     spreads,
+})
+const editOne = (editSpread) => ({
+    type: EDIT_ONE,
+    editSpread
 })
 const deleteOne = (spreadId) => ({
     type: DELETE_ONE,
@@ -123,6 +128,21 @@ export const addSpreadUser = (spreadU) => async (dispatch) => {
     }
 }
 
+export const editSpread = (spreadload, spreadId) => async (dispatch) => {
+    const response = await fetch(`/api/spreads/edit/${spreadId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(spreadload)
+    });
+    if (response.ok) {
+        const editSpread = await response.json();
+        dispatch(editOne(editSpread))
+        return editSpread;
+    }
+}
+
 export const addSpreadPost = (spreadP) => async (dispatch) => {
     const response = await fetch(`/api/spreads/create/post`, {
         method: "POST",
@@ -190,6 +210,10 @@ const spreadReducer = (state = initialState, action) => {
             return { ...state, spreads: allSpreads }
         case GET_ONE:
             setState = {...state, selected: { [action.spread.id]: {...action.spread}}}
+            return setState
+        case EDIT_ONE:
+            setState = {...state, spreads: {...state.spreads}}
+            setState.spreads[action.editSpread.id] = action.editSpread
             return setState
         case GET_POSTS:
             let allPosts = {};

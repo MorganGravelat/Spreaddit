@@ -1,18 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { deleteFriend, getFriends, editFriend } from '../../../store/friend';
+import { deleteFriend, editFriend } from '../../../store/friend';
 
 const FriendCard = ({friend}) => {
     const currentUser = useSelector((state) => state?.session?.user);
-    const friends = useSelector((state) => state?.friend?.friends)
+    //const friends = useSelector((state) => state?.friend?.friends)
     let user_id = currentUser?.id
     const dispatch = useDispatch();
     // useEffect(() => {
     //     dispatch(getFriends(user_id))
     // }, [dispatch]);
-    function dispatcher() {
-        dispatch(getFriends(user_id))
-    }
+    // function dispatcher() {
+    //     dispatch(getFriends(user_id))
+    // }
     function unFriend() {
         let payload
         if (friend.type === "requestee" || friend.type === "nrequestee") {
@@ -44,7 +43,7 @@ const FriendCard = ({friend}) => {
                 <div className="friend-info-div">
                     <div className="friend-interiorinfo-div">
                         <div className="profile-name-div">
-                            <img src={`${friend?.friend_image_url}`} />
+                            <img alt={friend.friend_id}src={`${friend?.friend_image_url}`} />
                         </div>
                         <h1>{friend.friend_username}</h1>
                     </div>

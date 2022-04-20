@@ -27,6 +27,15 @@ def delete_spread(id):
     db.session.commit()
     return res
 
+@spread_routes.route('/edit/<int:spreadId>', methods=["PUT"])
+def edit_spread(spreadId):
+    spread = dict(request.json)
+    data = Spread.query.get(spreadId)
+    data.title = spread['title'],
+    data.image_url = spread['image_url'],
+    db.session.commit()
+    return data.to_dict()
+
 @spread_routes.route('/create', methods=['POST'])
 def create_post():
     data = dict(request.json)
