@@ -1,0 +1,95 @@
+.profile-page-container {
+    display: flex;
+    flex-direction: column;
+}
+.profile-title-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    font-size: 2.5rem;
+}
+
+.profile-image-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.profile-image-div img {
+    border-radius: 5rem;
+    min-height: 10%;
+    min-width: 8%;
+}
+
+.friends-label-div {
+    align-self:center;
+    margin-right: 65%;
+    margin-top: 5%;
+}
+.friends-label-div * {
+    font-size: 3rem;
+}
+
+.spreads-label-div {
+    align-self:center;
+    margin-right: 65%;
+    margin-top: 5%;
+}
+.spreads-label-div * {
+    font-size: 3rem;
+}
+.white-line-profile {
+    width: 80%;
+    height: 1.4rem;
+    border-radius: 15%;
+    background-color: white;
+    margin-top: 1rem;
+    margin-bottom: 2%;
+    align-self: center;
+}
+.friends-list-div {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.friend-info-div {
+    display: flex;
+    flex-direction: row;
+    width: 68%;
+    margin-left: 10%;
+    margin-top: .2%;
+    align-self: center;
+    justify-content:space-between;
+}
+.grey-line-friends {
+    width: 70%;
+    height: 1.4rem;
+    border-radius: 15%;
+    background-color: grey;
+    margin-left: 10%;
+    align-self: center;
+}
+
+.profile-name-div img{
+    max-height: 7.1rem;
+    min-height: 7rem;
+    min-width: 7rem;
+    max-width: 7.1rem;
+    border-radius: 10%;
+    object-fit: cover;
+}
+
+.friend-interiorinfo-div {
+    display: flex;
+    flex-direction: row;
+    max-width: 25%;
+    width: 25%;
+}
+.friend-interiorinfo-div h1 {
+    align-self: center;
+    margin-left: 6%;
+
+}

@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { addSpread, addSpreadUser, checkSpreadedPosts, addSpreadPost } from "../../store/spread";
-import './SpreadForm.css';
+import { useHistory, useParams } from "react-router-dom";
+import { editSpread, checkSpreadedPosts, getSpread} from "../../../store/spread";
 
-function SpreadForm() {
+function SpreadEdit() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user_id = useSelector((state) => state.session?.user.id)
   const spreaded = useSelector((state) => state?.spread?.spreaded)
-
+  const { spreadId } = useParams();
+  const Uspread = useSelector((state => state?.spread?.selected[spreadId]));
+  console.log(Uspread, 'WHY THIS NO WORK?')
+  let spread = Uspread
+  console.log(spread,'YOYOYO DELETE ME LATER ALRIGHT FOLKS?')
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [title, setTitle] = useState("");
-  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3');
+  let [title, setTitle] = useState(`${spread?.title}`);
+  let [image_url, setImage_Url] = useState(`${spread?.image_url}`);
 
-  useEffect(() => {
-    dispatch(checkSpreadedPosts(user_id))
-  }, [dispatch, user_id])
   let postsArr = [];
   let postfilterArr = [];
   postsArr = Object.values(spreaded);
@@ -45,7 +45,10 @@ function SpreadForm() {
   const updateTitle = (e) => setTitle(e.target.value);
   const updateImage = (e) => setImage_Url(e.target.value);
 
-
+  useEffect(() => {
+    dispatch(checkSpreadedPosts(user_id))
+    dispatch(getSpread(spreadId))
+  }, [dispatch, user_id, spreadId])
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
@@ -53,41 +56,16 @@ function SpreadForm() {
     const payload = {
       title,
       image_url,
-      user_id,
     };
-    let createdSpread
     try {
-      createdSpread = await dispatch(addSpread(payload));
+      await dispatch(editSpread(payload, spreadId));
     } catch (error) {
       console.log("There is an error")
     }
-    let spread_id = createdSpread?.id
-    let oPayload = {
-        user_id,
-        spread_id,
-    }
-    //let postUser;
-    try {
-        await dispatch(addSpreadUser(oPayload))
-    } catch (error) {
-        console.log("There is an error")
-    }
-    if (createdSpread) {
-        console.log(createdSpread);
-        setHasSubmitted(false);
-        //spreaded_posts
-        for (let i = 0; i < postfilterArr.length; i++) {
-            let post_id = postfilterArr[i];
-            let pPayload = {
-                  spread_id,
-                  post_id,
-                  user_id
-            }
-            dispatch(addSpreadPost(pPayload));
-        }
-      history.push(`/`)
-    }
-  };
+
+    setHasSubmitted(false);
+    history.push(`/`)
+    };
 
   return (
     <section className="new-form-holder centered middled">
@@ -121,10 +99,10 @@ function SpreadForm() {
             />
           </div>
         </div>
-        <button className="create-new-spread-button" type="submit">Create new spread</button>
+        <button className="create-new-spread-button" type="submit">Edit spread</button>
       </form>
     </section>
   );
 };
 
-export default SpreadForm;
+export default SpreadEdit;

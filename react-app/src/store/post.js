@@ -27,10 +27,11 @@ const editOne = (post) => ({
 })
 
 export const getPosts = () => async (dispatch) => {
-    const response = await fetch(`/api/posts`)
+    const response = await fetch(`/api/posts/`)
     if (response.ok) {
         const posts = await response.json();
         dispatch(load(posts))
+        console.log(posts, "WHYWHYWHYW")
         return posts
     }
 }
@@ -103,7 +104,7 @@ const postReducer = (state = initialState, action) => {
             action.posts.posts.forEach((post) => {
                 allPosts[post.id] = post
             })
-            return { ...state, posts: allPosts }
+            return { ...state, posts: {...state.posts, ...allPosts} }
         case ADD_ONE:
             setState = {...state, posts: {...state.posts, [action.post.id]: action.post}}
             return setState

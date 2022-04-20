@@ -7,6 +7,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
     padding: 5px;
     height: 100%;
     background-color: #a82727;
@@ -38,7 +39,7 @@ body {
     flex-direction: row;
     position: absolute;
     right: 1%
-} .banner-search {
+} .banner-logout {
     margin-right: 20px;
 }
 
@@ -74,4 +75,24 @@ body {
 .banner-left-side-div * {
  margin-left: 1rem;
  font-size: 1.5rem;
+}
+.banner-right-side {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+    margin-right: 2rem;
+}
+
+.banner-right-side * {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+
+
+.create-button-div {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
 }
