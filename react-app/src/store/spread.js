@@ -56,7 +56,7 @@ const checkUserSpreads = (check) => ({
     check
 })
 export const getSpreads = (id) => async (dispatch) => {
-    const response = await fetch(`/api/spreads/${id}`)
+    const response = await fetch(`/api/spreads/${id}/`)
     if (response.ok) {
         const spreads = await response.json();
         dispatch(load(spreads))
@@ -65,7 +65,7 @@ export const getSpreads = (id) => async (dispatch) => {
 }
 
 export const getSpreadPosts = (id) => async (dispatch) => {
-    const response = await fetch(`/api/spreads/posts/${id}`)
+    const response = await fetch(`/api/spreads/posts/${id}/`)
     if (response.ok) {
         const spreads = await response.json();
         dispatch(getPosts(spreads))
@@ -74,7 +74,7 @@ export const getSpreadPosts = (id) => async (dispatch) => {
 }
 
 export const getSpread = (id) => async (dispatch) => {
-    const response = await fetch(`/api/spreads/single/${id}`)
+    const response = await fetch(`/api/spreads/single/${id}/`)
     if (response.ok) {
         const spread = await response.json();
         dispatch(getOne(spread))
@@ -83,7 +83,7 @@ export const getSpread = (id) => async (dispatch) => {
 }
 
 export const deleteSpread = (spread) => async (dispatch) => {
-    const response = await fetch(`/api/spreads/delete/${spread.id}`, {
+    const response = await fetch(`/api/spreads/delete/${spread.id}/`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -99,7 +99,7 @@ export const deleteSpread = (spread) => async (dispatch) => {
 }
 
 export const addSpread = (spread) => async (dispatch) => {
-    const response = await fetch(`/api/spreads/create`, {
+    const response = await fetch(`/api/spreads/create/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ export const addSpread = (spread) => async (dispatch) => {
 }
 
 export const addSpreadUser = (spreadU) => async (dispatch) => {
-    const response = await fetch(`/api/spreads/create/user`, {
+    const response = await fetch(`/api/spreads/create/user/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -129,7 +129,7 @@ export const addSpreadUser = (spreadU) => async (dispatch) => {
 }
 
 export const editSpread = (spreadload, spreadId) => async (dispatch) => {
-    const response = await fetch(`/api/spreads/edit/${spreadId}`, {
+    const response = await fetch(`/api/spreads/edit/${spreadId}/`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -144,7 +144,7 @@ export const editSpread = (spreadload, spreadId) => async (dispatch) => {
 }
 
 export const addSpreadPost = (spreadP) => async (dispatch) => {
-    const response = await fetch(`/api/spreads/create/post`, {
+    const response = await fetch(`/api/spreads/create/post/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -160,7 +160,7 @@ export const addSpreadPost = (spreadP) => async (dispatch) => {
 
 export const checkSpreaded = (post_id,user_id) => async (dispatch) => {
     console.log('LORD WE CHECKIN')
-    const response = await fetch(`/api/spreads/check/${post_id}/${user_id}`);
+    const response = await fetch(`/api/spreads/check/${post_id}/${user_id}/`);
     if (response.ok) {
         const check = await response.json();
         dispatch(checkSpread(check))
@@ -170,7 +170,7 @@ export const checkSpreaded = (post_id,user_id) => async (dispatch) => {
 
 export const checkSpreadedPosts = (user_id) => async (dispatch) => {
     console.log('LORD WE CHECKIN')
-    const response = await fetch(`/api/spreads/check/${user_id}`);
+    const response = await fetch(`/api/spreads/check/${user_id}/`);
     if (response.ok) {
         const check = await response.json();
         dispatch(checkUserSpreads(check))
@@ -179,7 +179,7 @@ export const checkSpreadedPosts = (user_id) => async (dispatch) => {
 }
 
 export const unSpread = (post_id,user_id) => async (dispatch) => {
-    const response = await fetch(`/api/spreads/delete/post/${post_id}/${user_id}`, {
+    const response = await fetch(`/api/spreads/delete/post/${post_id}/${user_id}/`, {
         method: "DELETE",
     });
     if (response.ok) {

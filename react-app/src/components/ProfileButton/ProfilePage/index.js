@@ -28,6 +28,14 @@ const ProfilePage = () => {
                     friendInfoArr.push({'type':'requestee','friend_image_url': ele.requestee_image_url, 'friend_username': ele.requestee_username, 'friend_id': ele.requestee_id})
                 }
             }
+            if (ele.accepted === false) {
+                if (parseInt(ele.requestee_id) === parseInt(user_id)) {
+                    notfriendInfoArr.push({'type':'nrequester','friend_image_url': ele.requester_image_url, 'friend_username': ele.requester_username, 'friend_id': ele.requester_id})
+                }
+                if (parseInt(ele.requester_id) === parseInt(user_id)) {
+                    notfriendInfoArr.push({'type':'nrequestee','friend_image_url': ele.requestee_image_url, 'friend_username': ele.requestee_username, 'friend_id': ele.requestee_id})
+                }
+            }
         }
         return FriendInfoArr;
     }
