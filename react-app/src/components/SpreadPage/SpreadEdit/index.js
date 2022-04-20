@@ -45,9 +45,9 @@ function SpreadEdit() {
   const updateTitle = (e) => setTitle(e.target.value);
   const updateImage = (e) => setImage_Url(e.target.value);
 
-  useEffect( async () => {
-    await dispatch(checkSpreadedPosts(user_id))
-    await dispatch(getSpread(spreadId))
+  useEffect( () => {
+    dispatch(checkSpreadedPosts(user_id))
+    dispatch(getSpread(spreadId))
   }, [dispatch, user_id, spreadId])
   const handleSubmit = async (e) => {
     e.preventDefault();
