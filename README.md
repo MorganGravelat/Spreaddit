@@ -1,4 +1,5 @@
 # Spreaddit
+## Heroku Link: https://spreaddit.herokuapp.com/
 
 Spreaddit is a loose clone of Reddit, a social posting board for any type of interest. Users can post and see posts by people they specifically curate and add as friends. Every post can be spread by any User and if your friend spreads you can see that post on any spread they are added to.
 
@@ -8,9 +9,8 @@ Spreaddit is a loose clone of Reddit, a social posting board for any type of int
 - Create, view, edit, and delete
    - Posts
    - Spreads
-   - Comments
    - Fun
-- Like, Unlike posts and comments
+
 
 Upcoming features:
 - Top spreads will be featured on the main page based off interactions.
@@ -23,7 +23,7 @@ Upcoming features:
 - PostgreSQL
 - Flask SQLAlchemy
 
-# Installation
+
 
 # Splash Page
 ### From the splash page, one of the few pages accessible without authentication on my site, this allows users to access the main posts on the site but not any spreads. The logged out user will have access to signup and login forms to access the inner content of the site. A demo user will be provided for efficient log in.
