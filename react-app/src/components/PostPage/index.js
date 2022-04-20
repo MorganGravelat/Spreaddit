@@ -42,11 +42,9 @@ function PostPage() {
     const hasSpreaded = () => {
         if (checkVar?.checks?.length) {
             spreaded = true;
-            console.log(spreaded, checkVar)
         }
         if (!checkVar?.checks?.length) {
             spreaded = false;
-            console.log(spreaded)
         }
     }
     hasSpreaded();
