@@ -10,10 +10,10 @@ function PostEdit() {
   const user_id = useSelector((state) => state.session?.user.id);
   const { postId } = useParams();
   const Cpost = useSelector((state) => state?.post.selected[postId]);
-
-  const [title, setTitle] = useState(`${Cpost?.title}`);
-  const [post, setPost] = useState(`${Cpost?.post}`);
-  const [image_url, setImage_Url] = useState(`${Cpost?.image_url}`);
+    console.log(Cpost);
+  const [title, setTitle] = useState(``);
+  const [post, setPost] = useState(``);
+  const [image_url, setImage_Url] = useState(``);
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 

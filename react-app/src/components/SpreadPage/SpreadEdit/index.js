@@ -15,8 +15,8 @@ function SpreadEdit() {
   console.log(spread,'YOYOYO DELETE ME LATER ALRIGHT FOLKS?')
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  let [title, setTitle] = useState(`${spread?.title}`);
-  let [image_url, setImage_Url] = useState(`${spread?.image_url}`);
+  let [title, setTitle] = useState(``);
+  let [image_url, setImage_Url] = useState(``);
 
   let postsArr = [];
   let postfilterArr = [];
@@ -45,9 +45,9 @@ function SpreadEdit() {
   const updateTitle = (e) => setTitle(e.target.value);
   const updateImage = (e) => setImage_Url(e.target.value);
 
-  useEffect(() => {
-    dispatch(checkSpreadedPosts(user_id))
-    dispatch(getSpread(spreadId))
+  useEffect( async () => {
+    await dispatch(checkSpreadedPosts(user_id))
+    await dispatch(getSpread(spreadId))
   }, [dispatch, user_id, spreadId])
   const handleSubmit = async (e) => {
     e.preventDefault();
