@@ -1,6 +1,7 @@
 import { getFriends } from '../../../store/friend';
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
+import { getUserSpreadPosts } from '../../../store/spread';
 
 
 const SpreadFriends = () => {
@@ -8,6 +9,8 @@ const SpreadFriends = () => {
     let user_id = currentUser?.id
     const dispatch = useDispatch();
     const friends = useSelector((state) => state?.friend?.friends)
+    const friendsposts = useSelector((state) => state?.spread?.userspreaded)
+    console.log(friendsposts, "HEYO ITS ME FRIENDS POSTS")
     let friendInfoArr = [];
     let friendsArr;
     function FriendInfoArr() {
@@ -28,10 +31,12 @@ const SpreadFriends = () => {
         return FriendInfoArr;
     }
     FriendInfoArr();
+    console.log(friendInfoArr[0], "HEYO ITR FRIEND INFO ARR")
     const [friendId, setFriendId] = useState(friendInfoArr[0]?.friend_id);
     const updateFriend = (e) => setFriendId(e.target.value);
     useEffect(() => {
         dispatch(getFriends(user_id))
+        dispatch(getUserSpreadPosts(friendId))
 
     }, [dispatch, user_id, friendId]);
     useEffect(() => {
@@ -41,12 +46,17 @@ const SpreadFriends = () => {
     // let OptionItems = friendInfoArr.map((friend) =>
     //     <option key={friend.friend_id} value={friend.friend_id}>{friend.friend_username}</option>
     // );
+    const onSubmit = () => {
+        dispatch(getUserSpreadPosts(friendId))
+       console.log(friendsposts, "WHAT IS FRIEND POSTS?")
+    }
+
     return (
         <div>
-            <select onChange={updateFriend}>
+        {friendInfoArr.length ? (<><select onChange={updateFriend}>
                 {friendInfoArr.map((friend) =>
                     <option key={friend.friend_id} value={friend.friend_id}>{friend.friend_username}</option>)}
-            </select>
+            </select><button onClick={onSubmit}>Add Friend To Spread</button></>) : <></>}
         </div>
     )
 
