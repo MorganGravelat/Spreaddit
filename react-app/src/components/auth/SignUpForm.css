@@ -1,0 +1,135 @@
+.form-container-div {
+    display: grid;
+    justify-content: center;
+}
+
+.signup-container {
+    width: 35rem;
+}
+
+.signup-username-input {
+    margin-bottom: 18px;
+}
+
+.signup-username-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #2b2b2b;
+    border: 2px solid #444444;
+    color: white;
+}
+
+.signup-username-input:focus {
+    outline: none !important;
+    border: 2px solid #44fff0;
+}
+
+.signup-username-container {
+    margin-bottom: 18px;
+}
+
+.signup-email-container {
+    margin-bottom: 18px;
+}
+
+.signup-email-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #2b2b2b;
+    border: 2px solid #444444;
+    color: white;
+}
+
+.signup-email-input:focus {
+    outline: none !important;
+    border: 2px solid #44fff0;
+}
+
+.signup-image-container {
+    margin-bottom: 18px;
+}
+
+.signup-image-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #2b2b2b;
+    border: 2px solid #444444;
+    color: white;
+}
+
+.signup-image-input:focus {
+    outline: none !important;
+    border: 2px solid #44fff0;
+}
+
+.signup-fullname-container {
+    margin-bottom: 18px;
+}
+
+.signup-fullname-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #2b2b2b;
+    border: 2px solid #444444;
+    color: white;
+}
+
+.signup-fullname-input:focus {
+    outline: none !important;
+    border: 2px solid #44fff0;
+}
+
+.signup-password-container {
+    margin-bottom: 18px;
+}
+
+.signup-password-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #2b2b2b;
+    border: 2px solid #444444;
+    color: white;
+}
+
+.signup-password-input:focus {
+    outline: none !important;
+    border: 2px solid #44fff0;
+}
+
+.signup-rpassword-container {
+    margin-bottom: 18px;
+}
+
+.signup-rpassword-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #2b2b2b;
+    border: 2px solid #444444;
+    color: white;
+}
+.signup-button {
+    background-color: #e24040;
+    width: 100%;
+    padding: 10.5px 18px;
+    border: none;
+}
+.signup-container {
+    min-height: 16%;
+    margin-top: 5%;
+}
+
+.signup-container label {
+    font-size: 1.5rem;
+}

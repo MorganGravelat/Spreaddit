@@ -41,12 +41,12 @@ const BannerUpper = () => {
         links = (
             <div className='banner-right-button-container'>
                 <NavLink to="/login">
-                    <div className='banner-search nav-button'>
+                    <div className='banner-login nav-button'>
                         <p>Login</p>
                     </div>
                 </NavLink>
                 <NavLink to="/sign-up">
-                    <div className='nav-button'>
+                    <div className='banner-signup nav-button'>
                         <p>&nbsp;Sign Up</p>
                     </div>
                 </NavLink>
@@ -56,12 +56,10 @@ const BannerUpper = () => {
 
     return (
         <div
-            className='banner-upper-container'
+            className={ user ? 'banner-upper-container' : 'banner-upper-container-loggedout'}
         >
             <div className='banner-left-side-div'>
                 {showCreateButton(user)}
-                <div className="logo-button-div">
-                </div>
             </div>
             <div className="logo-button-div">
                 <NavLink className="logo-button" exact to="/">

@@ -1,6 +1,8 @@
 .profile-spread-card-container {
     max-height: 20rem;
     border-radius: 10rem;
+    margin-bottom: 2%;
+
 }
 .profile-spread-image {
     max-height: 20rem;
@@ -13,7 +15,18 @@
     width: 65%;
     max-height: 50rem;
     overflow-y: scroll;
+    padding: .25em;
+    border: .25em solid transparent;
+    background:
+    linear-gradient(to bottom, rgb(138, 52, 52), rgba(187, 187, 187, 0.522)) content-box,
+    linear-gradient(to right, #961304d0, #8a1e12a4) padding-box,
+    linear-gradient(to right, #3a87bb, #06263c95) border-box;
+    border-radius: 5%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    box-shadow: rgba(0, 0, 0, 0.26) 0px 10px 30px 0px, rgba(0, 0, 0, 0.10) 0px 0px 0px 5px;
 }
+
 .profile-spread-div {
     display: flex;
     flex-direction: row;
@@ -58,6 +71,8 @@
 
 ::-webkit-scrollbar {
     width: 10px;
+    overflow-y: hidden;
+    display: none;
 }
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
@@ -68,3 +83,6 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+::-webkit-scrollbar {
+    display: none;
+  }

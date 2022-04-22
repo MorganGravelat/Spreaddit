@@ -13,6 +13,18 @@ body {
     background-color: #a82727;
     border-bottom: 1px solid #444444;
 }
+
+.banner-upper-container-loggedout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 5px;
+    height: 100%;
+    background-color: #a82727;
+    border-bottom: 1px solid #444444;
+}
+
 .nav-button {
     cursor: pointer;
     color: white;
@@ -33,18 +45,23 @@ body {
 }
 
 .banner-right-button-container {
-    font-family: "MaisonNueBook";
     color: white;
     display: flex;
     flex-direction: row;
     position: absolute;
-    right: 1%
+    right: 1%;
+    justify-content: space-around;
+    margin-right: 2%;
+    width: 8%;
 } .banner-logout {
     margin-right: 20px;
 }
 
+.banner-right-button-container p {
+    font-size: 1.5rem;
+}
+
 .banner-lower-container {
-    font-family: "MaisonNueBook";
     color: white;
     display: flex;
     justify-content: center;
@@ -95,4 +112,11 @@ body {
     display: flex;
     flex-direction:row;
     align-items: center;
+}
+
+.banner-right-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content:  space-around;
+    align-content:space-around;
 }

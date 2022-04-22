@@ -48,6 +48,9 @@
     width: 100%;
 }
 
+.post-description{
+    font-size: 2rem;
+}
 /* .spread-title {
     color: black;
     align-self: center;
