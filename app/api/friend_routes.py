@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import Friend, db
+from app.models import Friend, Spreaduser, db
 
 friend_routes = Blueprint('friends', __name__)
 
@@ -54,6 +54,11 @@ def checkfriend(user_id, friend_id):
         return jsonify('True')
     else:
         return jsonify('False')
+
+@friend_routes.route('/check/spread/<int:user_id>/<int:spread_id>/')
+def checkspreadfriend(user_id, spread_id):
+    results = Spreaduser.query.filter(Spreaduser.user_id == user_id).filter(Spreaduser.spread_id == spread_id).all()
+    return {'posts': [result.to_dict() for result in results]}
 
 @friend_routes.route('/edit', methods=["PUT"])
 def edit_friend():

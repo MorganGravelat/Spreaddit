@@ -17,10 +17,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 1rem;
     font-size: 3.5rem;
     /* max-width: 50rem; */
     width: 100%;
     height: 30rem;
     margin-bottom: 3rem;
+}
+
+.white-line-splash {
+    width: 80%;
+    height: 1.4rem;
+    border-radius: 15%;
+    background-color: white;
+    margin-top: 1rem;
+    margin-bottom: 2%;
+    align-self: center;
+}
+.spreads-splash-div h2 {
+    font-size: 3rem;
+    margin-top: 10%;
+}
+.spreads-splash-div h6 {
+    font-size: 1.2rem;
+    margin-top: 2%;
+}
+
+.spreads-splash-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.posts-splash-div * {
+    font-size: 3rem;
 }

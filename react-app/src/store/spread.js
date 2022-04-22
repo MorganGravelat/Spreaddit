@@ -8,6 +8,7 @@ const ADD_USER = "spreads/ADD_USER"
 const ADD_POST = "spreads/ADD_POST"
 const CHECK_SPREAD = "spreads/CHECK_SPREAD"
 const CHECK_USER_SPREAD = "spreads/CHECK_USER_SPREAD"
+const USER_SPREAD_POSTS = "spreads/USER_SPREAD_POSTS"
 const EDIT_ONE = "spreads/EDIT_ONE"
 
 const getOne = (spread) => ({
@@ -51,6 +52,11 @@ const checkSpread = (check) => ({
     check
 })
 
+const userSpreadpost = (posts) => ({
+    type: USER_SPREAD_POSTS,
+    posts
+})
+
 const checkUserSpreads = (check) => ({
     type: CHECK_USER_SPREAD,
     check
@@ -70,6 +76,16 @@ export const getSpreadPosts = (id) => async (dispatch) => {
         const spreads = await response.json();
         dispatch(getPosts(spreads))
         return spreads
+    }
+}
+
+export const getUserSpreadPosts = (id) => async (dispatch) => {
+    const response = await fetch(`/api/spreads/user/posts/${id}/`)
+    if (response.ok) {
+        const posts = await response.json();
+        console.log(posts,'these are user posts')
+        dispatch(userSpreadpost(posts))
+        return posts
     }
 }
 
@@ -94,6 +110,20 @@ export const deleteSpread = (spread) => async (dispatch) => {
         const spreadId = await response.json();
         console.log("MYSPREADID", spreadId)
         dispatch(deleteOne(spreadId))
+        return spreadId;
+    }
+}
+
+export const deleteSpreadUser = (spreadU) => async (dispatch) => {
+    const response = await fetch(`/api/spreads/delete/user/${spreadU.id}/`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(spreadU),
+    });
+    if (response.ok) {
+        const spreadId = await response.json();
         return spreadId;
     }
 }
@@ -178,6 +208,17 @@ export const checkSpreadedPosts = (user_id) => async (dispatch) => {
     }
 }
 
+export const removeSpreadUserPost = (dictId) => async (dispatch) => {
+    const response = await fetch(`/api/spreads/delete/user/post/${dictId.spread_id}/${dictId.user_id}/`, {
+        method: "DELETE",
+    });
+    if (response.ok) {
+        const postId = await response.json();
+        console.log("MYSPREADID", postId)
+        return postId;
+    }
+}
+
 export const unSpread = (post_id,user_id) => async (dispatch) => {
     const response = await fetch(`/api/spreads/delete/post/${post_id}/${user_id}/`, {
         method: "DELETE",
@@ -196,7 +237,8 @@ const initialState = {
     selected: {},
     posts: {},
     check: {},
-    spreaded: {}
+    spreaded: {},
+    userspreaded: {}
 }
 
 const spreadReducer = (state = initialState, action) => {
@@ -243,6 +285,12 @@ const spreadReducer = (state = initialState, action) => {
             setState = {...state}
             setState.spreaded = {...action.check.spreaded}
             return setState
+        case USER_SPREAD_POSTS:
+            let allSpreadposts = {};
+            action.posts.posts.forEach((post) => {
+                allSpreadposts[post.id] = post
+            })
+            return { ...state, userspreaded: {...allSpreadposts} }
         default:
             return state;
     }

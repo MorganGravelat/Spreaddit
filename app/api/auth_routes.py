@@ -17,7 +17,6 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-
 @auth_routes.route('/')
 def authenticate():
     """
@@ -65,6 +64,8 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
+            full_name=form.data['full_name'],
+            image_url=form.data['image_url'],
             password=form.data['password']
         )
         db.session.add(user)
