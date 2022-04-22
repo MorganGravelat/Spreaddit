@@ -49,10 +49,16 @@
     font-size: 2rem;
     margin-top: 2rem;
     width: 30%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
 }
 .Post-Detail-div h1{
-    font-size: 4rem;
+    font-size: 3rem;
     width: 50%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
 }
 
 .Post-btns {

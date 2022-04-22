@@ -79,3 +79,11 @@
     border: 2px solid #44fff0;
     outline: none;
 }
+
+.new-form-holder {
+    font-size: 1.5rem;
+}
+
+.new-form-holder p {
+    margin-bottom: 1% !important;
+}
