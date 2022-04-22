@@ -1,0 +1,70 @@
+.profile-spread-card-container {
+    max-height: 20rem;
+    border-radius: 10rem;
+}
+.profile-spread-image {
+    max-height: 20rem;
+    min-width: 29rem;
+    border-radius: 10rem;
+}
+.profile-spreads-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    max-height: 50rem;
+    overflow-y: scroll;
+}
+.profile-spread-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.spread-list-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10rem;
+}
+
+.profile-spread-div {
+    border-radius: 10rem;
+    background-color: #E3FFFF;
+}
+
+.profile-spread-div-title {
+    display: flex;
+    align-items: center;
+    margin-left: 3%;
+    font-weight:600;
+    font-size: 2.2rem;
+    width: 30%;
+    max-width: 30%;
+}
+
+.profile-spread-div h3 {
+    color: black;
+    font-size: 3rem;
+    font-weight: bolder;
+}
+.profile-spread-view-button {
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+    margin-right: 3%;
+    width: 50%;
+    max-width: 50%;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

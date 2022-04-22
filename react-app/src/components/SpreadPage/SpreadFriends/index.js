@@ -116,7 +116,7 @@ const SpreadFriends = ({spreadId, spread}) => {
     else {
         //setDecisioner(false);
     }
-    if (user_id === owner_id) return (<></>)
+    if (!(user_id === owner_id)) return (<></>)
     return (
         <div>
         {friendInfoArr.length ? (<><select onChange={updateFriend}>

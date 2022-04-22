@@ -18,11 +18,11 @@ const ProfileSpreadList = () => {
       if (spreads !== undefined) {
         spreadsArr = Object.values(spreads);
         return (
-          <>
+          <div className="profile-spreads-list-container">
             {spreadsArr?.map((spread) => (
               <ProfileSpreadCard key={spread?.id} spread={spread ? spread : null} />
             ))}
-          </>
+          </div>
         );
       }
 };
