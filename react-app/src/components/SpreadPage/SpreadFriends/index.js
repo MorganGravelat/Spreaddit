@@ -2,7 +2,7 @@ import { getFriends } from '../../../store/friend';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { getSpreadPosts, getUserSpreadPosts, addSpreadPost, addSpreadUser, deleteSpreadUser, removeSpreadUserPost } from '../../../store/spread';
+import { getUserSpreadPosts, addSpreadPost, addSpreadUser, deleteSpreadUser, removeSpreadUserPost } from '../../../store/spread';
 import { isOnSpreadCheck } from '../../../store/friend';
 
 
@@ -39,7 +39,7 @@ const SpreadFriends = ({spreadId, spread}) => {
     FriendInfoArr();
 
     console.log(friendInfoArr[0], "HEYO ITR FRIEND INFO ARR")
-    const [decisioner, setDecisioner] = useState(false);
+    //const [decisioner, setDecisioner] = useState(false);
     const [friendId, setFriendId] = useState(0);
     const updateFriend = (e) => setFriendId(e.target.value);
     useEffect(() => {
@@ -47,7 +47,7 @@ const SpreadFriends = ({spreadId, spread}) => {
         dispatch(getUserSpreadPosts(friendId))
         dispatch(isOnSpreadCheck({spread_id, 'user_id':friendId}))
 
-    }, [dispatch, user_id, friendId]);
+    }, [dispatch, user_id, friendId, spreadId, spread_id]);
     // useEffect(() => {
     //     console.log(friendId, 'MY FREND HAHAHAHAAH');
 
