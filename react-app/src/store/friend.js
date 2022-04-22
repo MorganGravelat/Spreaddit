@@ -3,6 +3,7 @@ const DELETE_ONE = "friends/DELETE_ONE"
 const IS_FRIEND = "friends/IS_FRIEND"
 const ADD_ONE = "friends/ADD_ONE"
 const EDIT_ONE = "friends/EDIT_ONE"
+const SPREAD_CHECK = "friends/SPREAD_CHECK"
 
 const load = (friends) => ({
     type: LOAD,
@@ -27,6 +28,11 @@ const isFriend = (isFriendRes) => ({
 const editOne = (editFriend) => ({
     type: EDIT_ONE,
     editFriend
+})
+
+const spreadCheck = (check) => ({
+    type: SPREAD_CHECK,
+    check
 })
 
 export const getFriends = (user_id) => async (dispatch) => {
@@ -77,6 +83,15 @@ export const isFriendCheck = (twoIds) => async (dispatch) => {
     }
 }
 
+export const isOnSpreadCheck = (spreadUserId) => async (dispatch) => {
+    const response = await fetch(`/api/friends/check/spread/${spreadUserId.user_id}/${spreadUserId.spread_id}/`)
+    if (response.ok) {
+        const isOnSpread = await response.json();
+        dispatch(spreadCheck(isOnSpread))
+        return isOnSpread
+    }
+}
+
 export const editFriend = (friend) => async (dispatch) => {
     const response = await fetch(`/api/friends/edit`, {
         method: "PUT",
@@ -97,6 +112,7 @@ export const editFriend = (friend) => async (dispatch) => {
 const initialState = {
     friends: {},
     check: {},
+    spreadcheck: {},
 }
 
 const friendReducer = (state = initialState, action) => {
@@ -122,6 +138,10 @@ const friendReducer = (state = initialState, action) => {
             return setState
         case IS_FRIEND:
             setState = {...state, check: [action.isFriendRes]}
+            return setState
+        case SPREAD_CHECK:
+            console.log(action.check, 'THE CHECK MAN!')
+            setState = {...state, spreadcheck: {...action.check.posts}}
             return setState
         default:
             return state;

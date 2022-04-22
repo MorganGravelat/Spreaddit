@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getFriends } from '../../../store/friend';
 import FriendCard from "../FriendCard";
+import ProfileSpreadList from "../ProfileSpreadList";
 import "./ProfilePage.css"
 
 
@@ -77,6 +78,7 @@ const ProfilePage = () => {
               <h2>Spreads</h2>
           </div>
           <div className="white-line-profile" />
+          <ProfileSpreadList />
       </div>
     );
 };

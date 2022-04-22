@@ -19,11 +19,28 @@ def get_posts(id):
     posts = Spreadpost.query.filter(Spreadpost.spread_id == id).all()
     return {'posts': [post.to_dict() for post in posts]}
 
+@spread_routes.route('/user/posts/<int:id>/')
+def get_user_posts(id):
+    posts = Spreadpost.query.filter(Spreadpost.user_id == id).all()
+    print(posts,'backend checker in this prtint')
+    return {'posts': [post.to_dict() for post in posts]}
+
 @spread_routes.route('/delete/<int:id>/', methods=['DELETE'])
 def delete_spread(id):
     spread = Spread.query.get(id)
     res = {"id": id}
     db.session.delete(spread)
+    db.session.commit()
+    return res
+
+@spread_routes.route('/delete/user/<int:id>/', methods=['DELETE'])
+def delete_spreaduser(id):
+    spreadU = dict(request.json)
+    spread_id = spreadU['spread_id']
+    spreadU = Spreaduser.query.filter(Spreaduser.user_id == id).filter(Spreaduser.spread_id == spread_id).all()
+    res = {'user_id': id, 'spread_id': spread_id}
+    for user in spreadU:
+        db.session.delete(user)
     db.session.commit()
     return res
 
@@ -88,6 +105,16 @@ def check_spreaded_posts(user_id):
 def delete_spreadpost(post_id, user_id):
     res = {"post_id": post_id}
     deletes = Spreadpost.query.filter(Spreadpost.post_id == post_id).filter(Spreadpost.user_id == user_id).all()
+    for delete in deletes:
+        db.session.delete(delete)
+    print('HELLO? IT WORKED? REALLY? HUH?')
+    db.session.commit()
+    return res
+
+@spread_routes.route('/delete/user/post/<int:spread_id>/<int:user_id>/', methods=['DELETE'])
+def delete_spreaduserpost(spread_id, user_id):
+    res = {"spread_id": spread_id, "user_id": user_id}
+    deletes = Spreadpost.query.filter(Spreadpost.spread_id == spread_id).filter(Spreadpost.user_id == user_id).all()
     for delete in deletes:
         db.session.delete(delete)
     print('HELLO? IT WORKED? REALLY? HUH?')

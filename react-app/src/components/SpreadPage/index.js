@@ -129,7 +129,7 @@ const SpreadPage = () => {
     <div className='control-spread-div'>
         <h1 className="spread-title-h1">{`${spread?.title}`}</h1>
         <div>{showButtons()}</div>
-        <SpreadFriends />
+        <SpreadFriends spreadId={spreadId} spread={spread} />
       <img alt={`${spread?.title}`} className="spread-image-img"src={`${spread?.image_url}`} />
       <div className="post-spread-list-container">
         {postListMap()}
