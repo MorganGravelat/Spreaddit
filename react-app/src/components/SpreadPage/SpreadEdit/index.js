@@ -15,8 +15,8 @@ function SpreadEdit() {
   console.log(spread,'YOYOYO DELETE ME LATER ALRIGHT FOLKS?')
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  let [title, setTitle] = useState(``);
-  let [image_url, setImage_Url] = useState(``);
+  let [title, setTitle] = useState(`${Uspread?.title}`);
+  let [image_url, setImage_Url] = useState(`${Uspread?.image_url}`);
 
   let postsArr = [];
   let postfilterArr = [];
@@ -52,7 +52,7 @@ function SpreadEdit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
-    if (errors.length) return alert('Error Submitting.')
+    if (errors.length) return
     const payload = {
       title,
       image_url,
@@ -66,7 +66,6 @@ function SpreadEdit() {
     setHasSubmitted(false);
     history.push(`/`)
     };
-
   return (
     <section className="new-form-holder centered middled">
       {hasSubmitted && errors?.map((error) => (

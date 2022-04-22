@@ -49,7 +49,7 @@ function SpreadForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
-    if (errors.length) return alert('Error Submitting.')
+    if (errors.length) return
     const payload = {
       title,
       image_url,

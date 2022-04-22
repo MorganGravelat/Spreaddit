@@ -10,10 +10,10 @@ function PostEdit() {
   const user_id = useSelector((state) => state.session?.user.id);
   const { postId } = useParams();
   const Cpost = useSelector((state) => state?.post.selected[postId]);
-    console.log(Cpost);
-  const [title, setTitle] = useState(``);
-  const [post, setPost] = useState(``);
-  const [image_url, setImage_Url] = useState(``);
+    console.log(Cpost, "THIS IS CPOST LKOOK AT ME");
+  const [title, setTitle] = useState(`${Cpost.title}`);
+  const [post, setPost] = useState(`${Cpost.post}`);
+  const [image_url, setImage_Url] = useState(`${Cpost.image_url}`);
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -42,7 +42,7 @@ function PostEdit() {
     let id = postId
     e.preventDefault();
     setHasSubmitted(true);
-    if (errors.length) return alert('Error Submitting.')
+    if (errors.length) return
     const payload = {
       id,
       title,
