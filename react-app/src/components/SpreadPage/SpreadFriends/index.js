@@ -118,8 +118,8 @@ const SpreadFriends = ({spreadId, spread}) => {
     }
     if (!(user_id === owner_id)) return (<></>)
     return (
-        <div>
-        {friendInfoArr.length ? (<><select onChange={updateFriend}>
+        <div className="spread-friend-div">
+        {friendInfoArr.length > 1 ? (<><select onChange={updateFriend}>
                 {friendInfoArr.map((friend) =>
                     <option key={friend.friend_id} value={friend.friend_id}>{friend.friend_username}</option>)}
             </select>{Object.values(getchecked).length ?

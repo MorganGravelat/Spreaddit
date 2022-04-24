@@ -21,4 +21,5 @@ class Spreadpost(db.Model):
         'post_image_url': self.posts.image_url,
         'post_user_id': self.posts.user_id,
         'post_post': self.posts.post,
+        'post_username': self.user.username,
     }

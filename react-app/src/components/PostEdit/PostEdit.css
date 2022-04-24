@@ -6,10 +6,10 @@
     max-width: 100%;
 }
 
-.create-post-form {
+.create-post-form-edit {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 }
 
 .create-form-input {

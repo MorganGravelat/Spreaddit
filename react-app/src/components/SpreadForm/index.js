@@ -13,7 +13,7 @@ function SpreadForm() {
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [title, setTitle] = useState("");
-  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3');
+  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1hdlg-ADLqiiP4gxnBkApcGugkNoLMlSr');
 
   useEffect(() => {
     dispatch(checkSpreadedPosts(user_id))
@@ -32,7 +32,7 @@ function SpreadForm() {
   useEffect(() => {
     let errors = [];
     if (title) {
-      if (title.length === 0 || title.length > 100) errors.push('Please enter a value for title between 1 - 100 characters.')
+      if (title.length === 0 || title.length > 26) errors.push('Please enter a value for title between 1 - 26 characters.')
     }
     if (!title) errors.push('Please enter a value for Title.')
     if (image_url) {
@@ -42,8 +42,7 @@ function SpreadForm() {
     setErrors(errors);
   }, [title, image_url])
 
-  const updateTitle = (e) => setTitle(e.target.value);
-  const updateImage = (e) => setImage_Url(e.target.value);
+  const updateTitle = (e) => setTitle(e.target.value.toUpperCase());
 
 
   const handleSubmit = async (e) => {
@@ -105,19 +104,6 @@ function SpreadForm() {
               placeholder="Enter a nice title for your spread"
               value={title}
               onChange={updateTitle}
-            />
-          </div>
-        </div>
-        <div className="create-input-container">
-          <label className="create-form-text" htmlFor="img">Image URL: </label>
-          <div>
-            <input
-              className="create-form-input"
-              type="text"
-              name="img"
-              placeholder="Image URL"
-              value={image_url}
-              onChange={updateImage}
             />
           </div>
         </div>

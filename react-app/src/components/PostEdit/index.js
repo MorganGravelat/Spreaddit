@@ -8,23 +8,26 @@ function PostEdit() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user_id = useSelector((state) => state.session?.user.id);
+  const count = useSelector((state) => state.util?.rcount);
   const { postId } = useParams();
-  const Cpost = useSelector((state) => state?.post.selected[postId]);
+  const Cpost = useSelector((state) => state?.post?.selected[postId]);
     console.log(Cpost, "THIS IS CPOST LKOOK AT ME");
-  const [title, setTitle] = useState(`${Cpost.title}`);
-  const [post, setPost] = useState(`${Cpost.post}`);
-  const [image_url, setImage_Url] = useState(`${Cpost.image_url}`);
+  const [title, setTitle] = useState(`${Cpost?.title}`);
+  const [post, setPost] = useState(`${Cpost?.post}`);
+  const [image_url, setImage_Url] = useState(`https://drive.google.com/uc?id=1ByCZAWUacphPcirbMaTDxjnIPKI8NvGW`);
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-
-
+    console.log('THIS IS THE COUNT!!!!!', count)
   // Form Validations:
   useEffect(() => {
     let errors = [];
     if (title) {
-      if (title.length === 0 || title.length > 100) errors.push('Please enter a value for title between 1 - 100 characters.')
+      if (title.length === 0 || title.length > 20) errors.push('Please enter a value for title between 1 - 20 characters.')
     }
     if (!title) errors.push('Please enter a value for Title.')
+    if (post) {
+        if (post.length === 0 || title.length > 200) errors.push('Please enter a value for post between 1 - 200 characters.')
+      }
     if (!post) errors.push('Please enter a post.')
     if (image_url) {
       if (image_url.length > 255) errors.push('Image URL must be shorter than 255 characters.')
@@ -63,13 +66,12 @@ function PostEdit() {
       history.push(`/posts/${postId}`)
     }
   };
-
   return (
     <section className="new-form-holder centered middled">
       {hasSubmitted && errors?.map((error) => (
         <p style={{color: 'red', margin:"0px"}}>{error}</p>
       ))}
-      <form className="create-post-form" onSubmit={handleSubmit}>
+      <form className="create-post-form-edit" onSubmit={handleSubmit}>
         <div className="create-input-container">
           <label className="create-form-text" htmlFor="title">Title: </label>
           <div>
@@ -84,19 +86,6 @@ function PostEdit() {
           </div>
         </div>
         <div className="create-input-container">
-          <label className="create-form-text" htmlFor="img">Image URL: </label>
-          <div>
-            <input
-              className="create-form-input"
-              type="text"
-              name="img"
-              placeholder="Image URL"
-              value={image_url}
-              onChange={updateImage}
-            />
-          </div>
-        </div>
-        <div className="create-input-container">
           <label className="create-form-text" htmlFor="desc">Post: </label>
           <div>
             <textarea className="create-post-post"
@@ -107,7 +96,7 @@ function PostEdit() {
             />
           </div>
         </div>
-        <button className="create-new-post-button" type="submit">Create new Post</button>
+        <button className="create-new-post-button" type="submit">Edit this post</button>
       </form>
     </section>
   );

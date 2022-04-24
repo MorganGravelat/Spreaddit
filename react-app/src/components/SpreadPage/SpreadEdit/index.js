@@ -16,7 +16,7 @@ function SpreadEdit() {
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   let [title, setTitle] = useState(`${Uspread?.title}`);
-  let [image_url, setImage_Url] = useState(`${Uspread?.image_url}`);
+  let [image_url, setImage_Url] = useState(`https://drive.google.com/uc?id=1hdlg-ADLqiiP4gxnBkApcGugkNoLMlSr`);
 
   let postsArr = [];
   let postfilterArr = [];
@@ -32,7 +32,7 @@ function SpreadEdit() {
   useEffect(() => {
     let errors = [];
     if (title) {
-      if (title.length === 0 || title.length > 100) errors.push('Please enter a value for title between 1 - 100 characters.')
+      if (title.length === 0 || title.length > 26) errors.push('Please enter a value for title between 1 - 26 characters.')
     }
     if (!title) errors.push('Please enter a value for Title.')
     if (image_url) {
@@ -42,8 +42,7 @@ function SpreadEdit() {
     setErrors(errors);
   }, [title, image_url])
 
-  const updateTitle = (e) => setTitle(e.target.value);
-  const updateImage = (e) => setImage_Url(e.target.value);
+  const updateTitle = (e) => setTitle(e.target.value.toUpperCase());
 
   useEffect( () => {
     dispatch(checkSpreadedPosts(user_id))
@@ -64,7 +63,7 @@ function SpreadEdit() {
     }
 
     setHasSubmitted(false);
-    history.push(`/`)
+    history.push(`/spread/${spreadId}`)
     };
   return (
     <section className="new-form-holder centered middled">
@@ -79,22 +78,10 @@ function SpreadEdit() {
               className="create-form-input"
               type="text"
               name="title"
+              required
               placeholder="Enter a nice title for your spread"
               value={title}
               onChange={updateTitle}
-            />
-          </div>
-        </div>
-        <div className="create-input-container">
-          <label className="create-form-text" htmlFor="img">Image URL: </label>
-          <div>
-            <input
-              className="create-form-input"
-              type="text"
-              name="img"
-              placeholder="Image URL"
-              value={image_url}
-              onChange={updateImage}
             />
           </div>
         </div>

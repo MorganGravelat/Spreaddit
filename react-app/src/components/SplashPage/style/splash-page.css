@@ -7,6 +7,7 @@
     align-items: center;
     flex-direction: column;
     min-height: 100%;
+    width: 70%;
 }
 .splash-page-header {
     color: rgb(0, 0, 0);
@@ -161,4 +162,12 @@ body {
     font-size: 1.8rem;
     max-width: 80%;
     margin-top: 1.5rem;
+}
+
+.spread-image {
+    width: 100%;
+}
+
+.spread-image-container {
+    width: 100%;
 }

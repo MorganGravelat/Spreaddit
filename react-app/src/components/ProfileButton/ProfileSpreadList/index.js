@@ -26,14 +26,23 @@ const ProfileSpreadList = () => {
         );
       }
 };
+    spreadsArr = Object.values(spreads);
+    if (spreadsArr.length) {
+        return (
+            <>
+              <div className="spread-list-container">
+                {spreadListMap()}
+              </div>
+            </>
+          );
+    } else {
 
-  return (
-    <>
-      <div className="spread-list-container">
-        {spreadListMap()}
-      </div>
-    </>
-  );
+        return (
+          <div className="no-spread-alert">
+          <h1>You dont have any spreads, click the 'Create a spread' button in the top left to start using them!</h1>
+          </div>
+        );
+    }
 };
 
 export default ProfileSpreadList;

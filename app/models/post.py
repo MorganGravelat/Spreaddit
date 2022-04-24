@@ -24,4 +24,5 @@ class Post(db.Model):
         'image_url': self.image_url,
         'user_id': self.user_id,
         'created_at': self.created_at,
+        'post_username': self.user.username,
     }

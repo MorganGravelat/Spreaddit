@@ -1,13 +1,14 @@
 .profile-spread-card-container {
     max-height: 20rem;
     border-radius: 10rem;
-    margin-bottom: 2%;
+    margin-bottom: 3%;
 
 }
 .profile-spread-image {
-    max-height: 20rem;
+    max-height: 23rem;
     min-width: 29rem;
     border-radius: 10rem;
+    object-fit: cover;
 }
 .profile-spreads-list-container {
     display: flex;
@@ -38,11 +39,14 @@
     justify-content: center;
     width: 100%;
     margin-bottom: 10rem;
+    overflow-y: hidden;
 }
 
 .profile-spread-div {
     border-radius: 10rem;
     background-color: #E3FFFF;
+    margin-bottom: 1rem;
+    max-height: 23rem;
 }
 
 .profile-spread-div-title {
@@ -86,3 +90,8 @@
 ::-webkit-scrollbar {
     display: none;
   }
+
+.no-spread-alert {
+    display: flex;
+    justify-content: center;
+}

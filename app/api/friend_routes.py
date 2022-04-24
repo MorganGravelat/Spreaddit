@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import Friend, Spreaduser, db
+from app.models import Friend, User, Spreaduser, db
 
 friend_routes = Blueprint('friends', __name__)
 
@@ -12,6 +12,14 @@ def friends(user_id):
     resArr = requests + requesters
     print(friends,user_id,"WHAT IS HAPPENING IN HERE? FRIENDS?")
     return {'friends': resArr}
+
+@friend_routes.route('/info/<int:user_id>/')
+def friendinfo(user_id):
+    print('BACK ROUTE LOOKING GOOD?')
+    friendinfo = User.query.get(user_id)
+    friend = friendinfo.to_dict()
+    return {'friendinfo': friend}
+
 
 @friend_routes.route('/create', methods=['POST'])
 def create_friend():

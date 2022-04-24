@@ -4,10 +4,21 @@ from app.models import db, Post
 # Adds a demo user, you can add other users here if you want
 def seed_posts():
     demopost = Post(
-        title='This sucks', post='Some people do not understand me!',image_url='https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3',user_id=1)
+        title='This rocks', post='Some people do understand me!',image_url='https://drive.google.com/uc?id=1ByCZAWUacphPcirbMaTDxjnIPKI8NvGW',user_id=1)
+    demopost2 = Post(
+        title='This sucks', post='Some people do not understand me!',image_url='https://drive.google.com/uc?id=1ByCZAWUacphPcirbMaTDxjnIPKI8NvGW',user_id=2)
+    demopost3 = Post(
+        title='This claps!', post='Some people do understand the guy standing right behind you!',image_url='https://drive.google.com/uc?id=1ByCZAWUacphPcirbMaTDxjnIPKI8NvGW',user_id=3)
+    demopost4 = Post(
+        title='This cracks!', post='Some people see the triangles sitting in every day life, when will they come?!',image_url='https://drive.google.com/uc?id=1ByCZAWUacphPcirbMaTDxjnIPKI8NvGW',user_id=4)
+    demopost5 = Post(
+        title='This smacks!', post='Understand me some people!',image_url='https://drive.google.com/uc?id=1ByCZAWUacphPcirbMaTDxjnIPKI8NvGW',user_id=1)
 
     db.session.add(demopost)
-
+    db.session.add(demopost2)
+    db.session.add(demopost3)
+    db.session.add(demopost4)
+    db.session.add(demopost5)
     db.session.commit()
 
 
