@@ -65,6 +65,13 @@ function SpreadEdit() {
     setHasSubmitted(false);
     history.push(`/spread/${spreadId}`)
     };
+
+    useEffect(() => {
+        if (typeof Uspread === 'undefined') {
+            history.push(`/`)
+        }
+      }, [title])
+
   return (
     <section className="new-form-holder centered middled">
       {hasSubmitted && errors?.map((error) => (

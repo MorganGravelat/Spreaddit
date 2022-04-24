@@ -36,6 +36,12 @@ function PostEdit() {
     setErrors(errors);
   }, [title, post, image_url])
 
+  useEffect(() => {
+    if (typeof Cpost === 'undefined') {
+        history.push(`/`)
+    }
+  }, [title, post])
+
   const updateTitle = (e) => setTitle(e.target.value);
   const updatePost = (e) => setPost(e.target.value);
   const updateImage = (e) => setImage_Url(e.target.value);
