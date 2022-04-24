@@ -4,6 +4,7 @@ const IS_FRIEND = "friends/IS_FRIEND"
 const ADD_ONE = "friends/ADD_ONE"
 const EDIT_ONE = "friends/EDIT_ONE"
 const SPREAD_CHECK = "friends/SPREAD_CHECK"
+const FRIEND_INFO = "friends/FRIEND_INFO"
 
 const load = (friends) => ({
     type: LOAD,
@@ -35,12 +36,28 @@ const spreadCheck = (check) => ({
     check
 })
 
+const friendInfo = (friend) => ({
+    type: FRIEND_INFO,
+    friend
+})
+
 export const getFriends = (user_id) => async (dispatch) => {
     const response = await fetch(`/api/friends/${user_id}`)
     if (response.ok) {
         const friends = await response.json();
         dispatch(load(friends))
         return friends
+    }
+}
+
+export const getFriendInfo = (user_id) => async (dispatch) => {
+    const response = await fetch(`/api/friends/info/${user_id}/`)
+    if (response.ok) {
+        console.log('STATE FUNCTION RESPONSE FUNCTION START')
+        const friend = await response.json();
+        dispatch(friendInfo(friend))
+        console.log('STATE RESPONSE FUNCTION END')
+        return friend
     }
 }
 
@@ -113,6 +130,7 @@ const initialState = {
     friends: {},
     check: {},
     spreadcheck: {},
+    friendinfo: {},
 }
 
 const friendReducer = (state = initialState, action) => {
@@ -142,6 +160,11 @@ const friendReducer = (state = initialState, action) => {
         case SPREAD_CHECK:
             console.log(action.check, 'THE CHECK MAN!')
             setState = {...state, spreadcheck: {...action.check.posts}}
+            return setState
+        case FRIEND_INFO:
+            setState = {...state}
+            console.log('STATE CASE')
+            setState.friendinfo = {...action.friend}
             return setState
         default:
             return state;

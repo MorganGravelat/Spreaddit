@@ -10,6 +10,7 @@ const CHECK_SPREAD = "spreads/CHECK_SPREAD"
 const CHECK_USER_SPREAD = "spreads/CHECK_USER_SPREAD"
 const USER_SPREAD_POSTS = "spreads/USER_SPREAD_POSTS"
 const EDIT_ONE = "spreads/EDIT_ONE"
+const DELETE_FRIEND = "spreads/DELETE_FRIEND"
 
 const getOne = (spread) => ({
     type: GET_ONE,
@@ -30,6 +31,10 @@ const deleteOne = (spreadId) => ({
 const deletePosts = (postId) => ({
     type: DELETE_POSTS,
     postId
+})
+const deleteFriend = (friendGone) => ({
+    type: DELETE_FRIEND,
+    friendGone
 })
 const getPosts = (posts) => ({
     type: GET_POSTS,
@@ -125,6 +130,21 @@ export const deleteSpreadUser = (spreadU) => async (dispatch) => {
     if (response.ok) {
         const spreadId = await response.json();
         return spreadId;
+    }
+}
+
+export const removeFriend = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/spreads/delete/friend/`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    });
+    if (response.ok) {
+        const friendGone = await response.json();
+        dispatch(deleteFriend(friendGone))
+        return friendGone;
     }
 }
 
@@ -291,6 +311,8 @@ const spreadReducer = (state = initialState, action) => {
                 allSpreadposts[post.id] = post
             })
             return { ...state, userspreaded: {...allSpreadposts} }
+        case DELETE_FRIEND:
+            return state;
         default:
             return state;
     }

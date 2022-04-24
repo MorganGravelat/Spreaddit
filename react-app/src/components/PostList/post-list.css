@@ -4,10 +4,11 @@
 .post-list-container {
     display: flex;
     flex-direction:column;
-    margin-top: 1rem;
+    margin-top: 1.6rem;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 90%;
+    margin-bottom: 6%;
 }
 .post-div {
     width: 80%;
@@ -19,7 +20,7 @@
     flex-direction: row;
     background: #797979;
     box-shadow: 0px 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
-    background: #E3FFFF;
+    background: #fed1d1;
     border: 1px solid #000000;
     box-sizing: border-box;
     border-radius: 2.4rem 2.4rem 2.4rem 2.4rem;
@@ -28,10 +29,15 @@
 .post-title {
     color: white;
     align-self: center;
-    margin-top: 4rem;
-    margin-left: 2rem;
-    margin-bottom: 4rem;
+    margin-top: 1.6rem;
+    background-color: #ffc7c7;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
     font-family: 'KoHo', sans-serif;
+    box-shadow: 0 0 8px 10px #ffc7c7;
 }
 .post-title > h3 {
     color: black;
@@ -69,20 +75,28 @@
 
 .post-description {
     align-self: flex-start;
-    background-color: #E3FFFF;
+    background-color: #e39797;
     box-sizing: border-box;
     color: black;
-    height: 8.4rem;
-    max-height: 8.4rem;
-    margin: 1rem 0px;
-    margin-left: 2rem;
-    width: 90%;
+    height: 50%;
+    max-height: 80%;
+    margin-left: 2%;
+    padding-left: 6%;
+    padding-bottom: 5%;
+    width: 100%;
     overflow-y: hidden;
     overflow-x: hidden;
+    margin-right: 2%;
     text-overflow: ellipsis;
     font-weight: medium;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-family: 'KoHo', sans-serif;
+    box-shadow: 0 0 5px 7px #e39797;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #fcc3c3a7;
+
+
 }
 
 .likes-bar {
@@ -100,3 +114,79 @@
 .space-between {
     width: 15%;
 }
+
+.post-detail-div h1 {
+    position:relative;
+    margin-top: 1%;
+    margin-left: 5%;
+}
+
+/* @media (max-width: 900px) and (min-width: 1px) {
+    .post-detail-div h1 {
+        position:relative;
+        margin-top: -10%;
+        margin-left: 6%;
+    }
+    .post-list-container {
+        margin-bottom: 10%;
+    }
+    .post-title {
+        color: white;
+        align-self: center;
+        margin-top: 5rem;
+        background-color: #ffc7c7;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        font-family: 'KoHo', sans-serif;
+        box-shadow: 0 0 8px 10px #ffc7c7;
+    }
+}
+
+@media (max-width: 1200px) and (min-width: 901px) {
+    .post-detail-div h1 {
+        position:relative;
+        margin-top: -11%;
+        margin-left: 5%;
+    }
+    .post-list-container {
+        margin-bottom: 10%;
+    }
+}
+
+@media (max-width: 1400px) and (min-width: 1201px) {
+    .post-detail-div h1 {
+        position:relative;
+        margin-top: -9%;
+        margin-left: 5%;
+    }
+    .post-list-container {
+        margin-bottom: 10%;
+    }
+}
+
+@media (max-width: 1600px) and (min-width: 1401px) {
+    .post-detail-div h1 {
+        position:relative;
+        margin-top: -8%;
+        margin-left: 5%;
+    }
+}
+
+@media (max-width: 1800px) and (min-width: 1601px) {
+    .post-detail-div h1 {
+        position:relative;
+        margin-top: -7%;
+        margin-left: 5%;
+    }
+}
+
+@media (max-width: 2000px) and (min-width: 1801px) {
+    .post-detail-div h1 {
+        position:relative;
+        margin-top: -6%;
+        margin-left: 5%;
+    }
+} */

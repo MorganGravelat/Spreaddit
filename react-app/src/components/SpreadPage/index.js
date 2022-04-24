@@ -48,7 +48,7 @@ const SpreadPage = () => {
         if (currentUser?.id === spread?.user_id) {
             return (
                 <div className="Post-btns">
-                    <NavLink className="Post-Lower-btn" exact to={`/spread/edit/${spread?.id}`}>
+                    <NavLink className="Spread-Lower-btn" exact to={`/spread/edit/${spread?.id}`}>
                         Edit
                     </NavLink>
                     {deleteButtons()}
@@ -106,7 +106,7 @@ const SpreadPage = () => {
         else {
             return (
                 <>
-                  <div className="Post-Lower-btn" onClick={() => {openModal();}}>Delete</div>
+                  <div className="Spread-Lower-btn" onClick={() => {openModal();}}>Delete</div>
                 </>
             );
         }

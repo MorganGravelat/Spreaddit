@@ -44,6 +44,36 @@ def delete_spreaduser(id):
     db.session.commit()
     return res
 
+@spread_routes.route('/delete/friend/', methods=['DELETE'])
+def delete_friend():
+    info = dict(request.json)
+    user_id = info['user_id']
+    friend_id = info['friend_id']
+    deleteList1 = []
+    spreadsList1 = Spreaduser.query.filter(Spreaduser.user_id == user_id).all()
+    for spreaduser in spreadsList1:
+        spreadinfo = spreaduser.to_dict()
+        if friend_id == spreadinfo['spread_user_id']:
+            deleteList1.append(spreadinfo['spread_id'])
+            db.session.delete(spreaduser)
+    for spreadId in deleteList1:
+        posting = Spreadpost.query.filter(Spreadpost.user_id == user_id).filter(Spreadpost.spread_id == spreadId).all()
+        for post in posting:
+            db.session.delete(post)
+    deleteList2 = []
+    spreadsList2 = Spreaduser.query.filter(Spreaduser.user_id == friend_id).all()
+    for spreaduser in spreadsList2:
+        spreadinfo = spreaduser.to_dict()
+        if user_id == spreadinfo['spread_user_id']:
+            deleteList2.append(spreadinfo['spread_id'])
+            db.session.delete(spreaduser)
+    for spreadId in deleteList2:
+        posting = Spreadpost.query.filter(Spreadpost.user_id == friend_id).filter(Spreadpost.spread_id == spreadId).all()
+        for post in posting:
+            db.session.delete(post)
+    db.session.commit()
+    return {'res': 'ok'}
+
 @spread_routes.route('/edit/<int:spreadId>/', methods=["PUT"])
 def edit_spread(spreadId):
     spread = dict(request.json)

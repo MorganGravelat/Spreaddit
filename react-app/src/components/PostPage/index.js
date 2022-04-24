@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, NavLink } from "react-router-dom";
+import { getFriendInfo } from "../../store/friend";
 import { getPost, deletePost } from "../../store/post";
 import { checkSpreaded } from "../../store/spread";
 import { isFriendCheck } from "../../store/friend";
@@ -34,11 +35,14 @@ function PostPage() {
     console.log(checkVar, 'LET US SEE')
     let cPost = {...post}
     const [modalIsOpen, setIsOpen] = React?.useState(false);
-    //const [deletePrompt, setDeletePrompt] = useState(false);
+    //const [spreaded, setSpreaded] = useState(null);
     useEffect(()=> {
-        dispatch(checkSpreaded(post_id,user_id))
-        dispatch(isFriendCheck({'user_id':user_id, 'friend_id':post_user_id}))
-    }, [dispatch, post, post_id, user_id, decider, post_user_id])
+        (async() => {
+            await dispatch(checkSpreaded(post_id,user_id));
+            await dispatch(getFriendInfo(post_user_id))
+            await dispatch(isFriendCheck({'user_id':user_id, 'friend_id':post_user_id}));
+        })();
+    }, [dispatch, post, post_id, user_id, decider, post_user_id]);
     const hasSpreaded = () => {
         if (checkVar?.checks?.length) {
             spreaded = true;
@@ -225,7 +229,7 @@ function PostPage() {
             return (
                 <>
                     <div className="Post-Detail-div">
-                        <h1 style={{margin: "0rem"}}>{post?.title}</h1>
+                        <h1 className="post-title-h1" style={{margin: "0rem"}}>{post?.title}</h1>
                         <p style={{margin: ".5rem 0rem 3rem 0rem"}}>{post?.post}</p>
                     </div>
                 </>
@@ -250,14 +254,16 @@ function PostPage() {
         <div className="main-container">
             <div className="Post-container">
                 <div className="Post-detail-container">
-                    {postDetail()}
+                    <div className='upper-post-div'>
+                        {postDetail()}
+                        {postImage()}
+                    </div>
                 </div>
                 <div className="Post-Lower-container">
-                    {postImage()}
                     <div className="Post-Lower">
-                        {showButtons()}
-                        <Spreads postId={postId} postuser_id={post_user_id} currentUser={currentUser} />
                         <Friends user_id={user_id} post_user_id={post_user_id} currentUser={currentUser} />
+                        <Spreads postId={postId} postuser_id={post_user_id} currentUser={currentUser} />
+                        {showButtons()}
                     </div>
                 </div>
             </div>

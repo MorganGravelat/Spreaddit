@@ -4,12 +4,24 @@
     flex-direction: column;
     align-items: center;
     max-width: 100%;
+    width: 20%;
 }
 
 .create-spread-form {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
+}
+
+.create-post-post {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #2b2b2b;
+    border: 2px solid #444444;
+    color: white;
+    margin: 10px 0px;
 }
 
 .create-form-input {
@@ -33,26 +45,6 @@
 .create-form-input:focus {
     border: 2px solid #44fff0;
     outline: none;
-}
-
-.create-form-calendar {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 12px;
-    font-size: 14px;
-    background-color: #2b2b2b;
-    border: 2px solid #444444;
-    color: white;
-    margin: 10px 0px;
-}
-
-.create-form-calendar:focus {
-    border: 2px solid #44fff0;
-    outline: none;
-}
-
-.create-form-calendar::-webkit-calendar-picker-indicator {
-    background-color: white;
 }
 
 .create-new-spread-button {
@@ -86,4 +78,18 @@
 
 .new-form-holder p {
     margin-bottom: 1% !important;
+}
+
+.create-input-container {
+    height: 100%;
+    width: 100%;
+}
+
+.create-post-form {
+    height: 50%;
+    width: 100%;
+}
+
+.new-form-holder {
+    height: 100%;
 }

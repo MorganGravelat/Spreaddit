@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFriend, editFriend } from '../../../store/friend';
+import { removeFriend } from "../../../store/spread";
 
 const FriendCard = ({friend}) => {
     const currentUser = useSelector((state) => state?.session?.user);
@@ -27,6 +28,12 @@ const FriendCard = ({friend}) => {
             }
         }
         dispatch(deleteFriend(payload))
+        let PayloadTwo = {
+            'user_id': user_id,
+            'friend_id': friend.friend_id
+        }
+        dispatch(removeFriend(PayloadTwo))
+
     }
     function acceptFriend(friend) {
         let payload

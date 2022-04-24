@@ -9,7 +9,7 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [full_name, setFull_Name] = useState('');
-  const [image_url, setImage_Url] = useState('');
+  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1GKuD4SakhsPGKsmmC_PpmsYsCcXhP-o9');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -46,10 +46,6 @@ const SignUpForm = () => {
 
   const updateFull_Name = (e) => {
     setFull_Name(e.target.value);
-  };
-
-  const updateImage_Url = (e) => {
-    setImage_Url(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -104,16 +100,6 @@ const SignUpForm = () => {
               onChange={updateFull_Name}
               value={full_name}
               className='signup-fullname-input'
-            ></input>
-          </div>
-          <div className='signup-image-container signup-container'>
-            <label className="label-signup" >Image Url</label>
-            <input
-              type='text'
-              name='image_url'
-              onChange={updateImage_Url}
-              value={image_url}
-              className='signup-image-input'
             ></input>
           </div>
           <div className='signup-password-container signup-container'>

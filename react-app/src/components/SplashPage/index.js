@@ -6,7 +6,6 @@ import './style/splash-page.css';
 
 const SplashPage = () => {
     const currentUser = useSelector((state) => state.session.user)
-
     if (currentUser) {
         return (
             <div className="splash-page-container">

@@ -11,7 +11,7 @@ function PostForm() {
 
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");
-  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3')
+  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1ByCZAWUacphPcirbMaTDxjnIPKI8NvGW')
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -20,9 +20,12 @@ function PostForm() {
   useEffect(() => {
     let errors = [];
     if (title) {
-      if (title.length === 0 || title.length > 100) errors.push('Please enter a value for title between 1 - 100 characters.')
+      if (title.length === 0 || title.length > 20) errors.push('Please enter a value for title between 1 - 20 characters.')
     }
     if (!title) errors.push('Please enter a value for Title.')
+    if (post) {
+        if (post.length === 0 || title.length > 200) errors.push('Please enter a value for post between 1 - 200 characters.')
+      }
     if (!post) errors.push('Please enter a post.')
     if (image_url) {
       if (image_url.length > 255) errors.push('Image URL must be shorter than 255 characters.')
@@ -33,7 +36,6 @@ function PostForm() {
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updatePost = (e) => setPost(e.target.value);
-  const updateImage = (e) => setImage_Url(e.target.value);
 
 
   const handleSubmit = async (e) => {
@@ -72,22 +74,10 @@ function PostForm() {
               className="create-form-input"
               type="text"
               name="title"
+              required
               placeholder="Enter a nice title for your post"
               value={title}
               onChange={updateTitle}
-            />
-          </div>
-        </div>
-        <div className="create-input-container">
-          <label className="create-form-text" htmlFor="img">Image URL: </label>
-          <div>
-            <input
-              className="create-form-input"
-              type="text"
-              name="img"
-              placeholder="Image URL"
-              value={image_url}
-              onChange={updateImage}
             />
           </div>
         </div>
@@ -96,6 +86,8 @@ function PostForm() {
           <div>
             <textarea className="create-post-post"
               name="desc"
+              required
+              style={{resize: 'none'}}
               placeholder="Write something for your post"
               value={post}
               onChange={updatePost}

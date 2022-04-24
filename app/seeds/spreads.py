@@ -4,13 +4,13 @@ from app.models import db, Spread
 # Adds a demo user, you can add other users here if you want
 def seed_spreads():
     demospread = Spread(
-        title='SPREADSX', image_url='https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3',user_id=1)
+        title='SPREADSX', image_url='https://drive.google.com/uc?id=1hdlg-ADLqiiP4gxnBkApcGugkNoLMlSr',user_id=1)
     demospread2 = Spread(
-        title='SPREADSXX', image_url='https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3',user_id=1)
+        title='SPREADSXX', image_url='https://drive.google.com/uc?id=1hdlg-ADLqiiP4gxnBkApcGugkNoLMlSr',user_id=1)
     demospread3 = Spread(
-        title='SPREADSXXX', image_url='https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3',user_id=1)
+        title='SPREADSXXX', image_url='https://drive.google.com/uc?id=1hdlg-ADLqiiP4gxnBkApcGugkNoLMlSr',user_id=1)
     demospread4 = Spread(
-        title='SPREADSXXXX', image_url='https://drive.google.com/uc?id=1FU5VA1G8mJoY8q7NSuBwYZpV-1UOHLv3',user_id=1)
+        title='SPREADSXXXX', image_url='https://drive.google.com/uc?id=1hdlg-ADLqiiP4gxnBkApcGugkNoLMlSr',user_id=1)
 
     db.session.add(demospread)
     db.session.add(demospread2)
