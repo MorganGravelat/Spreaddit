@@ -10,12 +10,10 @@ def friends(user_id):
     oFriends = Friend.query.filter(Friend.requestee_id == user_id).all()
     requesters = [oFriend.to_dict() for oFriend in oFriends]
     resArr = requests + requesters
-    print(friends,user_id,"WHAT IS HAPPENING IN HERE? FRIENDS?")
     return {'friends': resArr}
 
 @friend_routes.route('/info/<int:user_id>/')
 def friendinfo(user_id):
-    print('BACK ROUTE LOOKING GOOD?')
     friendinfo = User.query.get(user_id)
     friend = friendinfo.to_dict()
     return {'friendinfo': friend}
@@ -31,7 +29,6 @@ def create_friend():
     )
     db.session.add(newFriend)
     db.session.commit()
-    print(newFriend.to_dict(), "New Friend Has Worked In the Route")
     return newFriend.to_dict()
 
 @friend_routes.route('/delete', methods=['DELETE'])
@@ -46,7 +43,6 @@ def delete_friend():
     friends = Friend.query.filter(Friend.requester_id == requester_id).filter(Friend.requestee_id == requestee_id).all()
     id = friends[0].id
     res = {'id': id}
-    print(id, 'THIS IS THE ID YOU ARE LOOKING FOR!')
     for friend in friends:
         db.session.delete(friend)
     db.session.commit()

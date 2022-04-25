@@ -16,7 +16,6 @@ const SpreadFriends = ({spreadId, spread}) => {
     const friends = useSelector((state) => state?.friend?.friends)
     const friendsposts = useSelector((state) => state?.spread?.userspreaded)
     const getchecked = useSelector((state) => state?.friend?.spreadcheck)
-    console.log(friendsposts,getchecked, "HEYO ITS ME FRIENDS POSTS AND GETCHECKED")
     let friendInfoArr = [];
     let friendsArr;
     function FriendInfoArr() {
@@ -38,7 +37,6 @@ const SpreadFriends = ({spreadId, spread}) => {
     }
     FriendInfoArr();
 
-    console.log(friendInfoArr[0], "HEYO ITR FRIEND INFO ARR")
     //const [decisioner, setDecisioner] = useState(false);
     const [friendId, setFriendId] = useState(0);
     const updateFriend = (e) => setFriendId(e.target.value);
@@ -48,15 +46,9 @@ const SpreadFriends = ({spreadId, spread}) => {
         dispatch(isOnSpreadCheck({spread_id, 'user_id':friendId}))
 
     }, [dispatch, user_id, friendId, spreadId, spread_id]);
-    // useEffect(() => {
-    //     console.log(friendId, 'MY FREND HAHAHAHAAH');
-
-    // }, [friendId]);
-    // let OptionItems = friendInfoArr.map((friend) =>
-    //     <option key={friend.friend_id} value={friend.friend_id}>{friend.friend_username}</option>
-    // );
     const onSubmit = () => {
-        if (friendId === 0) {
+        console.log(friendId);
+        if (parseInt(friendId) === 0) {
             window.alert("Please pick a friend to add to spread.");
             return;
         }
@@ -72,7 +64,6 @@ const SpreadFriends = ({spreadId, spread}) => {
                 postIdArr.push(parseInt(id))
             }
         });
-        console.log(postIdArr, 'THIS IS POST ID ARR')
         for (let i = 0; i < postIdArr.length; i++) {
             let post_id = postIdArr[i];
             let payload = {
@@ -83,13 +74,15 @@ const SpreadFriends = ({spreadId, spread}) => {
             dispatch(addSpreadPost(payload))
         }
         //history.push("/profile-page");
-        history.push(`/profile-page`);
+
+            history.push(`/profile-page`);
         //dispatch(getSpreadPosts(spreadId));
         //setDecisioner(true);
 
     }
     const onRemoveSubmit = () => {
-        if (friendId === 0) {
+        console.log(friendId);
+        if (parseInt(friendId) === 0) {
             window.alert("Please pick a friend to add to spread.");
             return;
         }
@@ -103,7 +96,6 @@ const SpreadFriends = ({spreadId, spread}) => {
             user_id: friendId,
         }
         dispatch(removeSpreadUserPost(payload))
-        console.log('IT WORKED??????')
         // history.push("/profile-page");
         history.push(`/profile-page`);
         //dispatch(getSpreadPosts(spreadId));
@@ -123,8 +115,8 @@ const SpreadFriends = ({spreadId, spread}) => {
                 {friendInfoArr.map((friend) =>
                     <option key={friend.friend_id} value={friend.friend_id}>{friend.friend_username}</option>)}
             </select>{Object.values(getchecked).length ?
-            <button onClick={onRemoveSubmit}>Remove Friend From Spread</button> :
-            <button onClick={onSubmit}>Add Friend To Spread</button>}
+            <button className="remove-sfriend-button" onClick={onRemoveSubmit}>➖</button> :
+            <button className="add-sfriend-button" onClick={onSubmit}>➕</button>}
             </>) : <></>}
         </div>
     )

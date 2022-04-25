@@ -59,9 +59,9 @@ function App() {
         <Route path='/spread/edit/:spreadId' exact={true}>
             <SpreadEdit />
         </Route>
-        <Route path='/posts/:postId' exact={true}>
+        {/* <Route path='/posts/:postId' exact={true}>
             <PostPage />
-        </Route>
+        </Route> */}
         <Route path="/posts/edit/:postId" exact={true}>
           <PostEdit />
         </Route>

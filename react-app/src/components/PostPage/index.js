@@ -8,6 +8,7 @@ import { isFriendCheck } from "../../store/friend";
 import Modal from "react-modal"
 import Spreads from "./Spread";
 import Friends from "./Friend";
+import FooterComponent from "../SplashPage/footer";
 import './PostPage.css';
 
 function PostPage() {
@@ -32,7 +33,6 @@ function PostPage() {
 
     let checkVar = useSelector((state) => state?.spread?.check);
     let spreaded;
-    console.log(checkVar, 'LET US SEE')
     let cPost = {...post}
     const [modalIsOpen, setIsOpen] = React?.useState(false);
     //const [spreaded, setSpreaded] = useState(null);
@@ -68,88 +68,7 @@ function PostPage() {
         dispatch(getPost(postId))
     }, [dispatch, post_id, postId]);
 
-    // const spreadPost = (currentUser,postId,spreads) => {
-    //     user_id = currentUser?.id;
-    //     post_id = postId;
-    //     if (checkVar?.checks?.length) {
-    //         console.log(checkVar,'something is broken you are viewing the spread')
-    //     } else {
-    //             let spreadIdArr = SpreadPost(user_id,post_id,spreads);
-    //         for (let i = 0; i < spreadIdArr.length; i++) {
-    //             let spread_id = spreadIdArr[i];
-    //             const payload = {
-    //                 spread_id,
-    //                 post_id,
-    //                 user_id,
-    //             };
-    //             dispatch(addSpreadPost(payload));
-    //             dispatch(checkSpreaded(post_id,user_id));
-    //             spreaded=true;
-    //         }
-    //     }
-    // }
-    // const add_friend = () => {
-    //     if (!currentUser) {
-    //         return false;
-    //     }
-    //     if (parseInt(user_id) === parseInt(post_user_id)) {
-    //         return false;
-    //     }
-    //     if (decider) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
-    // const handleAdd = () => {
-    //         // e.preventDefault();
-    //         const payload = {
-    //             requestee_id: post_user_id,
-    //             requester_id: user_id
-    //         };
-    //         let createdPost;
-    //         createdPost = dispatch(addFriend(payload));
-    //         if (createdPost) {
-    //             decider = true;
-    //         }
-    // };
-    // const unspreadPost = (currentUser,postId,spreads) => {
-    //     user_id = currentUser.id;
-    //     post_id = postId;
-    //     if (!checkVar.checks.length) {
-    //         console.log(checkVar,'Something is broken, you are viewing the unspread')
-    //     } else {
-    //         dispatch(unSpread(post_id,user_id));
-    //         spreaded=false;
-    //     }
-    // }
 
-    // const showSpread = () => {
-    //     if (currentUser) {
-    //         if (spreaded) {
-    //             return (
-    //                 <div className="Post-btns">
-    //                     <button onClick={() => {unspreadPost(currentUser, postId,spreads);}}>
-    //                         Unspread!
-    //                     </button>
-    //                 </div>
-    //             )
-    //         } else {
-    //             return (
-    //                 <div className="Post-btns">
-    //                     <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
-    //                         Spread!
-    //                     </button>
-    //                 </div>
-    //             )
-    //         }
-
-    //     } else {
-    //         return (
-    //             <>
-    //             </>
-    //         );
-    //     }
-    // }
     const showButtons = () => {
         if (!currentUser) return;
         if (currentUser.id === cPost?.user_id) {
@@ -249,7 +168,19 @@ function PostPage() {
             )
         }
     }
-
+    if (!post) {
+        return (
+            <>
+                <div className="404-not-found">
+                    <div className="forofor-title-message"> 404 Page Not Found</div>
+                    <div className='forofor-description-message'>
+                        The page you requested could not be found, perhaps it does not exist, and you should not be here.
+                    </div>
+                </div>
+                <FooterComponent />
+            </>
+        )
+    }
     return (
         <div className="main-container">
             <div className="Post-container">
@@ -267,6 +198,7 @@ function PostPage() {
                     </div>
                 </div>
             </div>
+            <FooterComponent />
         </div>
     );
 };

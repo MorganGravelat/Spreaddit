@@ -5,7 +5,6 @@ const SpreadPost = (user_id, post_id,spreads) => {
         let obj = valArr[i]
         spreadsArr.push(obj.spread_id)
     }
-    console.log(spreadsArr, 'RETURN RESULT FOR SPREADPOST HELPER FUNCTION');
     return spreadsArr;
 };
     export default SpreadPost;

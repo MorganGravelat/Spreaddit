@@ -73,3 +73,84 @@ body {
     justify-content: center;
     align-items: center;
   }
+
+  .forofor-title-message {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+
+.forofor-title-message {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+.forofor-description-message {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    margin-top: 5%;
+}
+
+.Delete-confirm-btn {
+    border: 2px inset;
+    display: flex;
+    justify-content: center;
+    padding: 1px;
+    border-color: rgb(0, 0, 0);
+    background-color:#970000;
+    border-radius: 8px;
+    transition: border .5s !important;
+    transition: background-color .5s;
+}
+
+.Delete-confirm-btn:hover {
+    border: 6px inset;
+    background-color:#c90000;
+}
+
+.h2-delete-prompt {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+.Delete-cancel-btn {
+    margin-top: 1rem;
+    border: 2px inset;
+    display: flex;
+    justify-content: center;
+    padding: 1px;
+    border-color: rgb(0, 0, 0);
+    background-color:#3e3e3e;
+    border-radius: 8px;
+    transition: border .5s !important;
+    transition: background-color .5s;
+}
+
+.Delete-cancel-btn:hover {
+    border: 6px inset;
+    background-color: rgb(126, 94, 94);
+}
+
+.create-new-spread-button {
+    background-color: #2eb0a6 !important;
+    transition: background-color .5s;
+    cursor: pointer;
+}
+
+.create-new-spread-button:hover {
+    background-color: #44fff0 !important;
+}
+
+.create-new-post-button {
+    background-color: #2eb0a6 !important;
+    transition: background-color .5s;
+    cursor: pointer;
+}
+
+.create-new-post-button:hover {
+    background-color: #44fff0 !important;
+}

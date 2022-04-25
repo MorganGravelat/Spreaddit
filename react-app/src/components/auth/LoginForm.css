@@ -79,3 +79,25 @@
     border-radius: 30%;
     width: 25%;
 }
+
+.login-container-outer {
+    min-height: 16%;
+    margin-top: 5%;
+    background-color: white;
+    padding: 4rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10%;
+    height: 100%;
+    align-items: center;
+}
+
+.login-container label {
+    font-size: 1.5rem;
+}
+
+.login-h1 {
+    margin-bottom: 2rem;
+    margin-top: -1rem;
+}

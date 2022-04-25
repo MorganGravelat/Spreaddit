@@ -73,6 +73,15 @@
     max-width: 50%;
 }
 
+.profile-spread-view-button h3 {
+    color: black;
+    transition: color 1s;
+}
+
+.profile-spread-view-button h3:hover {
+    color: rgb(255, 29, 29);
+}
+
 ::-webkit-scrollbar {
     width: 10px;
     overflow-y: hidden;

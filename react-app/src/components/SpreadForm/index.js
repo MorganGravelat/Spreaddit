@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addSpread, addSpreadUser, checkSpreadedPosts, addSpreadPost } from "../../store/spread";
+import FooterComponent from "../SplashPage/footer";
 import './SpreadForm.css';
 
 function SpreadForm() {
@@ -28,7 +29,7 @@ function SpreadForm() {
       }
   }
 
-  console.log(spreaded,"THIS IS LIST OF POSTS SPREADED BY THIS USER");
+
   useEffect(() => {
     let errors = [];
     if (title) {
@@ -72,7 +73,6 @@ function SpreadForm() {
         console.log("There is an error")
     }
     if (createdSpread) {
-        console.log(createdSpread);
         setHasSubmitted(false);
         //spreaded_posts
         for (let i = 0; i < postfilterArr.length; i++) {
@@ -88,7 +88,7 @@ function SpreadForm() {
     }
   };
 
-  return (
+  return (<>
     <section className="new-form-holder centered middled">
       {hasSubmitted && errors?.map((error) => (
         <p style={{color: 'red', margin:"0px"}}>{error}</p>
@@ -111,6 +111,8 @@ function SpreadForm() {
         <button className="create-new-spread-button" type="submit">Create new spread</button>
       </form>
     </section>
+    <FooterComponent />
+    </>
   );
 };
 

@@ -89,6 +89,25 @@
     margin-right: 8%;
     padding-left: 5%;
 }
+.Post-btns a {
+    background-color: #1a9f94;
+    transition: background-color 1s;
+    color: rgb(255, 255, 255);
+}
+.Post-btns a:hover {
+    background-color: #15daca;
+}
+.Post-btns div {
+    background-color: #900505;
+    color: rgb(255, 206, 206);
+    transition: background-color 1s;
+}
+
+.Post-btns div:hover {
+    background-color: #de2020;
+    color: rgb(255, 206, 206);
+}
+
 
 .Post-btns button {
     background-color: #ff5151;
@@ -223,4 +242,28 @@
     .post-title-h1 {
         margin-top: 25% !important;
     }
+}
+
+.unspread-button {
+    color: white;
+    background-color:#900505 !important;
+    transition: background-color .5s;
+    cursor: pointer;
+}
+
+.unspread-button:hover {
+    background-color: #ff0404 !important;
+}
+
+.spread-button {
+    color: white;
+    background-color:#907f00 !important;
+    transition: background-color .5s;
+    transition: color .5s;
+    cursor: pointer;
+}
+
+.spread-button:hover {
+    background-color:#dcc304 !important;
+    color: rgb(255, 0, 0);
 }

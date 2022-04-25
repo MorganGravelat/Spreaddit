@@ -88,7 +88,6 @@ export const getUserSpreadPosts = (id) => async (dispatch) => {
     const response = await fetch(`/api/spreads/user/posts/${id}/`)
     if (response.ok) {
         const posts = await response.json();
-        console.log(posts,'these are user posts')
         dispatch(userSpreadpost(posts))
         return posts
     }
@@ -113,7 +112,6 @@ export const deleteSpread = (spread) => async (dispatch) => {
     });
     if (response.ok) {
         const spreadId = await response.json();
-        console.log("MYSPREADID", spreadId)
         dispatch(deleteOne(spreadId))
         return spreadId;
     }
@@ -209,7 +207,6 @@ export const addSpreadPost = (spreadP) => async (dispatch) => {
 }
 
 export const checkSpreaded = (post_id,user_id) => async (dispatch) => {
-    console.log('LORD WE CHECKIN')
     const response = await fetch(`/api/spreads/check/${post_id}/${user_id}/`);
     if (response.ok) {
         const check = await response.json();
@@ -219,7 +216,6 @@ export const checkSpreaded = (post_id,user_id) => async (dispatch) => {
 }
 
 export const checkSpreadedPosts = (user_id) => async (dispatch) => {
-    console.log('LORD WE CHECKIN')
     const response = await fetch(`/api/spreads/check/${user_id}/`);
     if (response.ok) {
         const check = await response.json();
@@ -234,7 +230,6 @@ export const removeSpreadUserPost = (dictId) => async (dispatch) => {
     });
     if (response.ok) {
         const postId = await response.json();
-        console.log("MYSPREADID", postId)
         return postId;
     }
 }
@@ -245,7 +240,6 @@ export const unSpread = (post_id,user_id) => async (dispatch) => {
     });
     if (response.ok) {
         const postId = await response.json();
-        console.log("MYSPREADID", postId)
         dispatch(deletePosts(postId))
         return postId;
     }
