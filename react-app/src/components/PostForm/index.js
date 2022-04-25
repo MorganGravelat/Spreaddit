@@ -12,7 +12,7 @@ function PostForm() {
 
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");
-  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1ByCZAWUacphPcirbMaTDxjnIPKI8NvGW')
+  const [image_url, setImage_Url] = useState('https://i.imgur.com/FrP2U39.png')
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 

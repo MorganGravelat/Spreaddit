@@ -64,7 +64,7 @@ const BannerUpper = () => {
             <div className="logo-button-div">
                 <NavLink className="logo-button" exact to="/">
                     <div>
-                        <img alt='spreaddit-logo' src="https://drive.google.com/uc?id=1z8yDdatXMlx29ISZb7x60M06h4DVAFzj" className="spreaddit-logo"></img>
+                        <img alt='spreaddit-logo' src="https://i.imgur.com/1COJnSi.png" className="spreaddit-logo"></img>
                     </div>
                 </NavLink>
             </div>

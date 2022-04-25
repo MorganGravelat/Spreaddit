@@ -92,7 +92,6 @@ function Spreads({postId, postuser_id, currentUser}) {
             );
         }
     }
-    console.log(spreads,"my spreads?")
     return (<>{showSpread()}</>)
 }
 

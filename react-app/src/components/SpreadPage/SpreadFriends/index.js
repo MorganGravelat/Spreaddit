@@ -47,7 +47,6 @@ const SpreadFriends = ({spreadId, spread}) => {
 
     }, [dispatch, user_id, friendId, spreadId, spread_id]);
     const onSubmit = () => {
-        console.log(friendId);
         if (parseInt(friendId) === 0) {
             window.alert("Please pick a friend to add to spread.");
             return;
@@ -81,7 +80,6 @@ const SpreadFriends = ({spreadId, spread}) => {
 
     }
     const onRemoveSubmit = () => {
-        console.log(friendId);
         if (parseInt(friendId) === 0) {
             window.alert("Please pick a friend to add to spread.");
             return;
