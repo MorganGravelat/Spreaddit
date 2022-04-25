@@ -10,7 +10,7 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [full_name, setFull_Name] = useState('');
-  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1GKuD4SakhsPGKsmmC_PpmsYsCcXhP-o9');
+  const [image_url, setImage_Url] = useState('https://i.imgur.com/GiMu19G.png');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const user = useSelector(state => state.session.user);

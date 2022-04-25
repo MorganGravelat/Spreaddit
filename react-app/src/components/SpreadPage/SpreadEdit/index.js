@@ -15,7 +15,7 @@ function SpreadEdit() {
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   let [title, setTitle] = useState(`${Uspread?.title}`);
-  let [image_url, setImage_Url] = useState(`https://drive.google.com/uc?id=1hdlg-ADLqiiP4gxnBkApcGugkNoLMlSr`);
+  let [image_url, setImage_Url] = useState(`https://i.imgur.com/X3Cw60g.png`);
 
   let postsArr = [];
   let postfilterArr = [];

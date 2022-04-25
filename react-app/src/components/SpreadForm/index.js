@@ -14,7 +14,7 @@ function SpreadForm() {
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [title, setTitle] = useState("");
-  const [image_url, setImage_Url] = useState('https://drive.google.com/uc?id=1hdlg-ADLqiiP4gxnBkApcGugkNoLMlSr');
+  const [image_url, setImage_Url] = useState('https://i.imgur.com/X3Cw60g.png');
 
   useEffect(() => {
     dispatch(checkSpreadedPosts(user_id))
