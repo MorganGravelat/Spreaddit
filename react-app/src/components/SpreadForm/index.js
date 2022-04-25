@@ -104,6 +104,7 @@ function SpreadForm() {
               placeholder="Enter a nice title for your spread"
               value={title}
               onChange={updateTitle}
+              required
             />
           </div>
         </div>
