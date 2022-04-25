@@ -103,4 +103,5 @@
 .no-spread-alert {
     display: flex;
     justify-content: center;
+    margin-bottom: 8rem;
 }
