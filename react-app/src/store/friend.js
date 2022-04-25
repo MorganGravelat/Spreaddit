@@ -53,10 +53,8 @@ export const getFriends = (user_id) => async (dispatch) => {
 export const getFriendInfo = (user_id) => async (dispatch) => {
     const response = await fetch(`/api/friends/info/${user_id}/`)
     if (response.ok) {
-        console.log('STATE FUNCTION RESPONSE FUNCTION START')
         const friend = await response.json();
         dispatch(friendInfo(friend))
-        console.log('STATE RESPONSE FUNCTION END')
         return friend
     }
 }
@@ -158,12 +156,10 @@ const friendReducer = (state = initialState, action) => {
             setState = {...state, check: [action.isFriendRes]}
             return setState
         case SPREAD_CHECK:
-            console.log(action.check, 'THE CHECK MAN!')
             setState = {...state, spreadcheck: {...action.check.posts}}
             return setState
         case FRIEND_INFO:
             setState = {...state}
-            console.log('STATE CASE')
             setState.friendinfo = {...action.friend}
             return setState
         default:

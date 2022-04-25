@@ -24,11 +24,9 @@ function Spreads({postId, postuser_id, currentUser}) {
     const hasSpreaded = () => {
         if (checkVar?.checks?.length) {
             spreaded = true;
-            console.log(spreaded, checkVar)
         }
         if (!checkVar?.checks?.length) {
             spreaded = false;
-            console.log(spreaded)
         }
     }
     hasSpreaded();
@@ -36,7 +34,6 @@ function Spreads({postId, postuser_id, currentUser}) {
         user_id = currentUser?.id;
         post_id = postId;
         if (checkVar?.checks?.length) {
-            console.log(checkVar,'something is broken you are viewing the spread')
         } else {
                 let spreadIdArr = SpreadPost(user_id,post_id,spreads);
             for (let i = 0; i < spreadIdArr.length; i++) {
@@ -57,20 +54,23 @@ function Spreads({postId, postuser_id, currentUser}) {
         user_id = currentUser.id;
         post_id = postId;
         if (!checkVar.checks.length) {
-            console.log(checkVar,'Something is broken, you are viewing the unspread')
+            return
         } else {
             dispatch(unSpread(post_id,user_id));
             spreaded=false;
         }
         history.push(`/profile-page`);
     }
-
+    let spreadsArr = Object.values(spreads);
+    if (!spreadsArr.length) {
+        return(<></>)
+    }
     const showSpread = () => {
         if (currentUser) {
             if (spreaded) {
                 return (
                     <div className="Post-btns">
-                        <button onClick={() => {unspreadPost(currentUser, postId,spreads);}}>
+                        <button className="unspread-button" onClick={() => {unspreadPost(currentUser, postId,spreads);}}>
                             Unspread!
                         </button>
                     </div>
@@ -78,7 +78,7 @@ function Spreads({postId, postuser_id, currentUser}) {
             } else {
                 return (
                     <div className="Post-btns">
-                        <button onClick={() => {spreadPost(currentUser, postId,spreads);}}>
+                        <button className="spread-button" onClick={() => {spreadPost(currentUser, postId,spreads);}}>
                             Spread!
                         </button>
                     </div>
@@ -92,7 +92,7 @@ function Spreads({postId, postuser_id, currentUser}) {
             );
         }
     }
-
+    console.log(spreads,"my spreads?")
     return (<>{showSpread()}</>)
 }
 

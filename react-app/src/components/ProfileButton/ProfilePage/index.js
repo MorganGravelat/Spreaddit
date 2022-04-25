@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { getFriends } from '../../../store/friend';
 import FriendCard from "../FriendCard";
 import ProfileSpreadList from "../ProfileSpreadList";
+import FooterComponent from "../../SplashPage/footer";
 import "./ProfilePage.css"
 
 
@@ -79,6 +80,7 @@ const ProfilePage = () => {
           </div>
           <div className="white-line-profile" />
           <ProfileSpreadList />
+          <FooterComponent />
       </div>
     );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addPost } from "../../store/post";
+import FooterComponent from "../SplashPage/footer";
 import './PostForm.css';
 
 function PostForm() {
@@ -55,13 +56,12 @@ function PostForm() {
       console.log("There is an error")
     }
     if (createdPost) {
-      console.log(createdPost);
       setHasSubmitted(false);
       history.push(`/`)
     }
   };
 
-  return (
+  return (<>
     <section className="new-form-holder centered middled">
       {hasSubmitted && errors?.map((error) => (
         <p style={{color: 'red', margin:"0px"}}>{error}</p>
@@ -97,6 +97,8 @@ function PostForm() {
         <button className="create-new-post-button" type="submit">Create new Post</button>
       </form>
     </section>
+    <FooterComponent />
+    </>
   );
 };
 

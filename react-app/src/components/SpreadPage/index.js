@@ -5,6 +5,7 @@ import { getSpreadPosts, getSpread, deleteSpread } from "../../store/spread";
 import Modal from "react-modal"
 import PostCard from "../PostCard";
 import SpreadFriends from "./SpreadFriends";
+import FooterComponent from "../SplashPage/footer";
 import "./SpreadPage.css"
 
 const SpreadPage = () => {
@@ -74,7 +75,6 @@ const SpreadPage = () => {
         } catch (error) {
             console.log("error in delete")
         }
-        console.log("RAGURAGURAGURAGU",destroyedSpread)
         if (destroyedSpread?.id) {
             history.push("/");
         }
@@ -124,7 +124,19 @@ const SpreadPage = () => {
       );
     }
   };
-
+  if (!spread) {
+    return (
+        <>
+            <div className="404-not-found">
+                <div className="forofor-title-message"> 404 Page Not Found</div>
+                <div className='forofor-description-message'>
+                    The page you requested could not be found, perhaps it does not exist, and you should not be here.
+                </div>
+            </div>
+            <FooterComponent />
+        </>
+    )
+}
   return (
     <div className='control-spread-div'>
         <h1 className="spread-title-h1">{`${spread?.title}`}</h1>
@@ -134,6 +146,7 @@ const SpreadPage = () => {
       <div className="post-spread-list-container">
         {postListMap()}
       </div>
+      <FooterComponent />
     </div>
   );
 };

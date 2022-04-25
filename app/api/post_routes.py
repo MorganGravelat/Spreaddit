@@ -26,7 +26,6 @@ def create_post():
     )
     db.session.add(newPost)
     db.session.commit()
-    print(newPost, "New Post Has Worked In the Route")
     return newPost.to_dict()
 
 @post_routes.route('/edit/<int:id>', methods=["PUT"])

@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 const ProfileSpreadCard = ({spread}) => {
-    console.log(spread, 'THIS IST HE SPRAD YOU LLOOOK FOR MY CHILD')
     return (
         <div className="profile-spread-card-container">
             <div className="profile-spread-div" key={spread?.id}>

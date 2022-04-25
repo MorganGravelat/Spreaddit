@@ -69,6 +69,7 @@
     margin-top: .2%;
     align-self: center;
     justify-content:space-between;
+    align-content: center;
 }
 .grey-line-friends {
     width: 70%;
@@ -98,4 +99,67 @@
     align-self: center;
     margin-left: 6%;
 
+}
+
+.friend-button {
+    width: 100%;
+    height: 45%;
+}
+
+.remove-friend-button {
+    background-color: rgb(143, 9, 9);
+    color: white;
+    width: 70%;
+    transition: background-color 1s;
+}
+
+.cancel-request-button {
+    background-color: rgb(143, 9, 9);
+    height: 60%;
+    color: white;
+    transition: background-color 1s;
+}
+
+.deny-request-button {
+    height: 70%;
+    font-size: 1.2rem;
+    background-color: rgb(143, 9, 9);
+    color: white;
+    transition: background-color 1s;
+    margin-right: 1rem;
+}
+
+.deny-request-button:hover {
+    background-color: rgb(219, 25, 25);
+    cursor: pointer;
+}
+
+.accept-request-button {
+    height: 70%;
+    font-size: 1.2rem;
+    background-color: #166c65;
+    color: white;
+    transition: background-color 1s;
+    margin-right: 1rem;
+}
+
+.accept-request-button:hover {
+    background-color: #1a9f94;
+    cursor: pointer;
+}
+
+.cancel-request-button:hover {
+    background-color: rgb(219, 25, 25);
+    cursor: pointer;
+}
+.remove-friend-button:hover {
+    background-color: rgb(219, 25, 25);
+    cursor: pointer;
+}
+
+.unfriend-button-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16rem;
 }

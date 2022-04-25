@@ -13,7 +13,6 @@ const ProfileSpreadList = () => {
     useEffect(() => {
       dispatch(getSpreads(currentUser.id));
     }, [dispatch, currentUser.id]);
-    console.log(spreads, `SPREADSPREADSPREAD`)
     const spreadListMap = () => {
       if (spreads !== undefined) {
         spreadsArr = Object.values(spreads);

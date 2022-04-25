@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editSpread, checkSpreadedPosts, getSpread} from "../../../store/spread";
+import FooterComponent from "../../SplashPage/footer";
 
 function SpreadEdit() {
   const dispatch = useDispatch();
@@ -10,9 +11,7 @@ function SpreadEdit() {
   const spreaded = useSelector((state) => state?.spread?.spreaded)
   const { spreadId } = useParams();
   const Uspread = useSelector((state => state?.spread?.selected[spreadId]));
-  console.log(Uspread, 'WHY THIS NO WORK?')
   let spread = Uspread
-  console.log(spread,'YOYOYO DELETE ME LATER ALRIGHT FOLKS?')
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   let [title, setTitle] = useState(`${Uspread?.title}`);
@@ -28,7 +27,6 @@ function SpreadEdit() {
       }
   }
 
-  console.log(spreaded,"THIS IS LIST OF POSTS SPREADED BY THIS USER");
   useEffect(() => {
     let errors = [];
     if (title) {
@@ -72,7 +70,7 @@ function SpreadEdit() {
         }
       }, [title])
 
-  return (
+  return (<>
     <section className="new-form-holder centered middled">
       {hasSubmitted && errors?.map((error) => (
         <p style={{color: 'red', margin:"0px"}}>{error}</p>
@@ -95,6 +93,8 @@ function SpreadEdit() {
         <button className="create-new-spread-button" type="submit">Edit spread</button>
       </form>
     </section>
+    <FooterComponent />
+    </>
   );
 };
 

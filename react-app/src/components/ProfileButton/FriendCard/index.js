@@ -55,15 +55,15 @@ const FriendCard = ({friend}) => {
                         <h1>{friend.friend_username}</h1>
                     </div>
                 { friend.type === "requester" || friend.type === "requestee" ? (<div className="unfriend-button-div">
-                            <button onClick={() => {unFriend();}}>Unfriend</button>
+                            <button className="remove-friend-button friend-button" onClick={() => {unFriend();}}>Unfriend</button>
                     </div>) : (<></>)
                 }
                 { friend.type === "nrequester" ? (<div className="unfriend-button-div">
-                            <button onClick={() => {unFriend();}}>Deny Request</button>
-                            <button onClick={() => {acceptFriend(friend);}}>Accept Request</button>
+                            <button className="deny-request-button friend-button" onClick={() => {unFriend();}}>Deny Request</button>
+                            <button className="accept-request-button friend-button" onClick={() => {acceptFriend(friend);}}>Accept Request</button>
                     </div>) : (<></>) }
                 { friend.type === "nrequestee" ? (<div className="unfriend-button-div">
-                        <button onClick={() => {unFriend();}}>Cancel Request</button>
+                        <button className="cancel-request-button  friend-button" onClick={() => {unFriend();}}>Cancel Request</button>
                 </div>) : (<></>) }
                 </div>
             </>

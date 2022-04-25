@@ -2,23 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editPost } from "../../store/post";
+import FooterComponent from "../SplashPage/footer";
 import './PostEdit.css';
 
 function PostEdit() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user_id = useSelector((state) => state.session?.user.id);
-  const count = useSelector((state) => state.util?.rcount);
   const { postId } = useParams();
   const Cpost = useSelector((state) => state?.post?.selected[postId]);
-    console.log(Cpost, "THIS IS CPOST LKOOK AT ME");
   const [title, setTitle] = useState(`${Cpost?.title}`);
   const [post, setPost] = useState(`${Cpost?.post}`);
   const [image_url, setImage_Url] = useState(`https://drive.google.com/uc?id=1ByCZAWUacphPcirbMaTDxjnIPKI8NvGW`);
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-    console.log('THIS IS THE COUNT!!!!!', count)
-  // Form Validations:
   useEffect(() => {
     let errors = [];
     if (title) {
@@ -40,11 +37,10 @@ function PostEdit() {
     if (typeof Cpost === 'undefined') {
         history.push(`/`)
     }
-  }, [title, post])
+  }, [title, post, Cpost, history])
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updatePost = (e) => setPost(e.target.value);
-  const updateImage = (e) => setImage_Url(e.target.value);
 
 
   const handleSubmit = async (e) => {
@@ -66,13 +62,12 @@ function PostEdit() {
       console.log("There is an error")
     }
     if (createdPost) {
-      console.log(createdPost);
       setHasSubmitted(false);
       //history.push(`/posts/${createdPost.id}`)
       history.push(`/posts/${postId}`)
     }
   };
-  return (
+  return (<>
     <section className="new-form-holder centered middled">
       {hasSubmitted && errors?.map((error) => (
         <p style={{color: 'red', margin:"0px"}}>{error}</p>
@@ -107,6 +102,8 @@ function PostEdit() {
         <button className="create-new-post-button" type="submit">Edit this post</button>
       </form>
     </section>
+    <FooterComponent />
+    </>
   );
 };
 

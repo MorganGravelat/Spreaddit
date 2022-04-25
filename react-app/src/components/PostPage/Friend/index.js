@@ -28,19 +28,16 @@ function Friends({user_id, post_user_id, currentUser}) {
         return true;
     }
     const handleAdd = () => {
-        console.log('BEGINNING OF HANDLE ADD')
             // e.preventDefault();
             const payload = {
                 requestee_id: post_user_id,
                 requester_id: user_id
             };
             let createdPost;
-            console.log('BEFORE CREATED POST OF HANDLE ADD')
             createdPost = dispatch(addFriend(payload));
             if (createdPost) {
                 decider = true;
             }
-            console.log(createdPost,'END OF HANDLE ADD')
     };
     useEffect(()=> {
         dispatch(isFriendCheck({'user_id':user_id, 'friend_id':post_user_id}))
@@ -48,11 +45,10 @@ function Friends({user_id, post_user_id, currentUser}) {
 
     }, [dispatch, post_user_id, user_id])
 
-    console.log(friendinfo, " MY FIRNEDS INFO YOYOOYO")
 
     return (
             <>
-                {add_friend() ? (<NavLink className='profile-button-navlink' to="/profile-page"><div onClick={() => {handleAdd();}} className="Delete-confirm-btn">Add Friend!</div></NavLink>) : <><h1>{`Posted by ${friendinfo?.full_name}`}</h1></>}
+                {add_friend() ? (<><NavLink className='profile-button-navlink' to="/profile-page"><div onClick={() => {handleAdd();}} className="Delete-confirm-btn">Add Friend!</div></NavLink><h1>{`Posted by ${friendinfo?.full_name}`}</h1></>) : <><h1>{`Posted by ${friendinfo?.full_name}`}</h1></>}
             </>
         );
 

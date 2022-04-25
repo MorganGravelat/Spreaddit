@@ -10,7 +10,7 @@ body {
     flex-direction: row;
     padding: 5px;
     height: 100%;
-    background-color: #a82727;
+    background-color: #740808;
     border-bottom: 1px solid #444444;
 }
 
@@ -21,15 +21,19 @@ body {
     flex-direction: row;
     padding: 5px;
     height: 100%;
-    background-color: #a82727;
+    background-color: #740808;
     border-bottom: 1px solid #444444;
+}
+
+.banner-upper-container-loggedout .spreaddit-logo{
+    margin-left: 33%;
 }
 
 .nav-button {
     cursor: pointer;
     color: white;
 } .nav-button:hover {
-    color: #eb6464;
+    color: #2ae9d9;
     transition: color 1s;
 }
 
@@ -75,7 +79,13 @@ body {
     font-size: 1.5rem;
 }
 .spreaddit-logo {
-    font-size: 1.5rem;
+    width: 30%;
+    margin-left: 23%;
+    border-radius: 15%;
+    transition: background-color 1s;
+}
+.spreaddit-logo:hover {
+    background-color: #960000;
 }
 
 .top-nav-bar {

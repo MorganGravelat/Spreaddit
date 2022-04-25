@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import FooterComponent from '../SplashPage/footer';
 import "./LoginForm.css"
 
 const LoginForm = () => {
@@ -21,7 +22,7 @@ const LoginForm = () => {
 
   const demoLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login('demo@aa.io', 'password'));
+    const data = await dispatch(login('bigmoney@gmail.com', 'password'));
     if (data) {
       setErrors(data);
     }
@@ -41,7 +42,8 @@ const LoginForm = () => {
 
   return (
     <div className="form-container-div">
-        <form className="login-container" onSubmit={onLogin}>
+        <form className="login-container-outer" onSubmit={onLogin}>
+            <h1 className="login-h1">Login!</h1>
           <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
@@ -72,6 +74,7 @@ const LoginForm = () => {
             <button className="demo-button" onClick={demoLogin}>Demo Login</button>
           </div>
         </form>
+        <FooterComponent />
     </div>
   );
 };
