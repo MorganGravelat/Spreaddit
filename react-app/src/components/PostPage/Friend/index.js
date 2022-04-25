@@ -44,6 +44,8 @@ function Friends({user_id, post_user_id, currentUser}) {
     };
     useEffect(()=> {
         dispatch(isFriendCheck({'user_id':user_id, 'friend_id':post_user_id}))
+        dispatch(getFriendInfo(post_user_id))
+
     }, [dispatch, post_user_id, user_id])
 
     console.log(friendinfo, " MY FIRNEDS INFO YOYOOYO")

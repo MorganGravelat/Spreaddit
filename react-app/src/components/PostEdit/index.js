@@ -88,6 +88,7 @@ function PostEdit() {
               placeholder="Enter a nice title for your post"
               value={title}
               onChange={updateTitle}
+              required
             />
           </div>
         </div>
@@ -98,6 +99,7 @@ function PostEdit() {
               name="desc"
               placeholder="Write something for your post"
               value={post}
+              required
               onChange={updatePost}
             />
           </div>
