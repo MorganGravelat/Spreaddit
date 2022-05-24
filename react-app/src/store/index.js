@@ -5,6 +5,8 @@ import postReducer from './post';
 import spreadReducer from './spread';
 import friendReducer from './friend';
 import utilReducer from './util'
+import commentReducer from './comment';
+import likeReducer from './like';
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +14,8 @@ const rootReducer = combineReducers({
   spread: spreadReducer,
   friend: friendReducer,
   util: utilReducer,
+  comment: commentReducer,
+  like: likeReducer,
 });
 
 

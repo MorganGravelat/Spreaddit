@@ -9,6 +9,7 @@ import Modal from "react-modal"
 import Spreads from "./Spread";
 import Friends from "./Friend";
 import FooterComponent from "../SplashPage/footer";
+import CommentsForm from "../Comment";
 import './PostPage.css';
 
 function PostPage() {
@@ -199,6 +200,7 @@ function PostPage() {
                 </div>
             </div>
             <FooterComponent />
+            <CommentsForm postId={postId} />
         </div>
     );
 };
