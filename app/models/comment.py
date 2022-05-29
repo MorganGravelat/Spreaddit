@@ -21,4 +21,6 @@ class Comment(db.Model):
         'user_id': self.user_id,
         'post_id': self.post_id,
         'created_at': self.created_at,
+        'user_image': self.user.image_url,
+        'post_username': self.user.username,
     }

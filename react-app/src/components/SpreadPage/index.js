@@ -6,13 +6,17 @@ import Modal from "react-modal"
 import PostCard from "../PostCard";
 import SpreadFriends from "./SpreadFriends";
 import FooterComponent from "../SplashPage/footer";
+import { getPostLikes, userPostLikes } from "../../store/like";
 import "./SpreadPage.css"
 
 const SpreadPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { spreadId } = useParams();
+    const likes = useSelector((state) => state?.like.Plikes);
     const currentUser = useSelector((state) => state.session.user);
+    const user_id = useSelector((state) => state.session?.user?.id)
+    const UserLikes = useSelector((state) => state?.like.Ulikes);
     const posts = useSelector((state) => state?.spread.posts);
     const spread = useSelector((state => state?.spread.selected[spreadId]));
     const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -39,9 +43,11 @@ const SpreadPage = () => {
         return
     }
 
-    useEffect(() => {
+    useEffect( () => {
       dispatch(getSpreadPosts(spreadId));
-      dispatch(getSpread(spreadId))
+      dispatch(getSpread(spreadId));
+      dispatch(getPostLikes());
+      dispatch(userPostLikes(user_id));
     }, [dispatch, spreadId]);
 
     const showButtons = () => {
@@ -118,7 +124,7 @@ const SpreadPage = () => {
       return (
         <div className="spread-post-container">
           {filteredvar?.map((post) => (
-            <PostCard key={post?.id} post={post ? post : null} />
+            <PostCard key={post?.id} post={post ? post : null} likesCount={likes[post?.post_id]} likeInfo={ UserLikes[post.post_id] ? UserLikes[post.post_id] : [false,false] } />
           ))}
         </div>
       );

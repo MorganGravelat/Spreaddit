@@ -34,7 +34,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-left: 1rem;
+    margin-left: 4%;
     margin-bottom: 1rem;
     font-family: 'KoHo', sans-serif;
     box-shadow: 0 0 8px 10px #ffc7c7;
@@ -121,6 +121,8 @@
     margin-left: 5%;
 }
 
+
+
 /* @media (max-width: 900px) and (min-width: 1px) {
     .post-detail-div h1 {
         position:relative;
@@ -190,3 +192,85 @@
         margin-left: 5%;
     }
 } */
+
+.like-button-deactivated {
+    background-color: #a96262;
+    color: black;
+    border-radius: 20%;
+}
+
+.like-button-deactivated h1 {
+    background-color: #5b3c3c;
+    color: rgba(0, 0, 0, 0.6);
+    border-radius: 20%;
+    transition: color .5s;
+    transition: background-color .5s;
+}
+
+.dislike-button-deactivated {
+    background-color: #a96262;
+    color: black;
+    border-radius: 20%;
+}
+
+.dislike-button-deactivated h1 {
+    background-color: #5b3c3c;
+    color: rgba(0, 0, 0, 0.6);
+    border-radius: 20%;
+    transition: color .5s;
+    transition: background-color .5s;
+
+}
+
+
+.like-button-selected {
+    background-color: rgb(36, 161, 20);
+    color: black;
+    border-radius: 20%;
+    transition: color .5s;
+    transition: background-color .5s;
+}
+
+.like-button-selected:hover {
+    background-color: rgb(48, 227, 25);
+    color: black;
+    border-radius: 20%;
+    transition: color .5s;
+    transition: background-color .5s;
+}
+
+.dislike-button-selected {
+    background-color: rgb(207, 43, 25);
+    color: black;
+    border-radius: 20%;
+    transition: color .5s;
+    transition: background-color .5s;
+}
+
+.dislike-button-selected:hover {
+    background-color: rgb(255, 68, 47);
+    color: black;
+    border-radius: 20%;
+    transition: color .5s;
+    transition: background-color .5s;
+}
+
+.like-button-deactivated:hover {
+    background-color: rgb(48, 227, 25);
+    color: rgb(36, 161, 20);
+}
+
+.like-button-deactivated h1:hover {
+    background-color: rgb(48, 227, 25);
+    color: rgb(0, 0, 0);
+}
+
+.dislike-button-deactivated:hover {
+    background-color: rgb(255, 68, 47);
+    color: rgb(36, 161, 20);
+}
+
+.dislike-button-deactivated h1:hover {
+    background-color: rgb(255, 68, 47);
+    color: rgb(0, 0, 0);
+}
