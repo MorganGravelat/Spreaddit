@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect  } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addLike } from "../../store/like";
+import { addLike, editLike, deleteLike } from "../../store/like";
 
 const PostCard = ({post, likesCount, myLikes, likeInfo}) => {
     let isLiked = false;
@@ -28,10 +28,21 @@ const PostCard = ({post, likesCount, myLikes, likeInfo}) => {
         if (liked === 1) {
             setLiked(0);
             setLikes(likes-1);
+            let newLike = {
+                user_id,
+                post_id,
+            }
+            dispatch(deleteLike(newLike));
         }
         if (liked === -1) {
             setLiked(1);
             setLikes(likes+2);
+            let newLike = {
+                user_id,
+                post_id,
+                liked: 1,
+            }
+            dispatch(editLike(newLike))
         }
         if (liked === 0) {
             setLiked(1);
@@ -49,10 +60,21 @@ const PostCard = ({post, likesCount, myLikes, likeInfo}) => {
         if (liked === 1) {
             setLiked(-1);
             setLikes(likes-2);
+            let newLike = {
+                user_id,
+                post_id,
+                liked: -1,
+            }
+            dispatch(editLike(newLike))
         }
         if (liked === -1) {
             setLiked(0);
             setLikes(likes+1);
+            let newLike = {
+                user_id,
+                post_id,
+            }
+            dispatch(deleteLike(newLike));
         }
         if (liked === 0) {
             setLiked(-1);
