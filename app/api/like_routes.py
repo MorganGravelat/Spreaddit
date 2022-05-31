@@ -65,6 +65,31 @@ def post_like():
     db.session.add(newLike)
     db.session.commit()
     return newLike.to_dict()
+
+@like_routes.route('/edit/', methods=["PUT"])
+def edit_like():
+    like = dict(request.json)
+    user_id = like['user_id']
+    post_id = like['post_id']
+    data = Postlike.query.filter(Postlike.user_id == user_id).filter(Postlike.post_id == post_id).first()
+    data.liked = like['liked'],
+    db.session.commit()
+    return data.to_dict()
+
+@like_routes.route('/delete/', methods=['DELETE'])
+def delete_like():
+    like = dict(request.json)
+    user_id = like['user_id']
+    post_id = like['post_id']
+    datas = Postlike.query.filter(Postlike.user_id == user_id).filter(Postlike.post_id == post_id).all()
+    dictData = False
+    for data in datas:
+        dictData = data.to_dict()
+    print(dictData, 'HOIAFJIOAFIJAIFIOAJFIOAJSFOIASJFIOAFJIOASJFIOASJFIOASJFIOADSJFIOJQF#*()J@Q)*#@JF)')
+    liked = dictData['liked']
+    db.session.delete(data)
+    db.session.commit()
+    return dictData
 # @comment_routes.route('/delete/<int:id>', methods=["DELETE"])
 # def delete_comment(id):
 #     data = dict(request.json)

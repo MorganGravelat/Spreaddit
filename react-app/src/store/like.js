@@ -6,7 +6,7 @@ const USER_like_LIKES = "likes/USER_like_LIKES"
 const HAS_LIKED_like = "likes/HAS_LIKED_like"
 const ADD_ONE = "likes/ADD_ONE"
 const EDIT_ONE = "likes/EDIT_ONE"
-const REMOVE_ONE = "likes/REMOVE_ONE"
+const DELETE_ONE = "likes/DELETE_ONE"
 
 
 const load = (likes) => ({
@@ -20,6 +20,10 @@ const addALike = (like) => ({
 const editALike = (like) => ({
     type: EDIT_ONE,
     like
+})
+const deleteOne = (likeInfo) => ({
+    type: DELETE_ONE,
+    likeInfo
 })
 const likeliked = (liketurn) => ({
     type: HAS_LIKED_like,
@@ -44,9 +48,9 @@ const like = (like) => ({
     like
 })
 
-const unlike = () => ({
-    type: REMOVE_ONE,
-})
+// const unlike = () => ({
+//     type: REMOVE_ONE,
+// })
 
 
 export const getPostLikes = () => async (dispatch) => {
@@ -88,6 +92,20 @@ export const editLike = (like) => async (dispatch) => {
     }
 }
 
+export const deleteLike = (like) => async (dispatch) => {
+    const response = await fetch(`/api/likes/delete/`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(like),
+    });
+    if (response.ok) {
+        const likeInfo = await response.json();
+        dispatch(deleteOne(likeInfo))
+        return likeInfo;
+    }
+}
 // export const editPost = (post) => async (dispatch) => {
 //     const response = await fetch(`/api/posts/edit/${post.id}`, {
 //         method: "PUT",
@@ -103,11 +121,11 @@ export const editLike = (like) => async (dispatch) => {
 //     }
 // }
 
-// export const hasLikedlike = (like_id,user_id) => async(dispatch) => {
-//     const response = await fetch(`/api/likes/${like_id}/${user_id}/`)
+// export const hasLikedlike = (post_id,user_id) => async(dispatch) => {
+//     const response = await fetch(`/api/likes/${post_id}/${user_id}/`)
 //     if (response.ok) {
 //         const liketurn = await response.json();
-//         console.log(liketurn, typeof liketurn, 'THIS IS LIKED LOOK AT HIM',like_id, user_id)
+//         console.log(liketurn, typeof liketurn, 'THIS IS LIKED LOOK AT HIM',post_id, user_id)
 //         dispatch(likeliked(liketurn))
 //         return liketurn
 //     }
@@ -176,6 +194,15 @@ const likeReducer = (state = initialState, action) => {
             else {
                 newState.Plikes[action?.like?.post_id] = action?.like?.liked
             }
+        case EDIT_ONE:
+            newState = {...state};
+            if (action?.likeInfo?.liked === 1) newState.Plikes[action?.likeInfo?.post_id] += 2
+            if (action?.likeInfo?.liked === -1) newState.Plikes[action?.likeInfo?.post_id] += -2
+            return newState;
+        case DELETE_ONE:
+            newState = {...state};
+            newState.Plikes[action.likeInfo.post_id] -= action.likeInfo.liked
+            return newState;
         default:
             return state;
     }
