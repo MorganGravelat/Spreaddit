@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import Postlike, Commentlike, db
+from app.models import Postlike, db
 
 like_routes = Blueprint('likes', __name__)
 

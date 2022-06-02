@@ -38,11 +38,6 @@ const loadPLikes = (likes) => ({
     likes,
 })
 
-const loadCommentLikes = (likes) => ({
-    type: LOAD_COMMENT_LIKES,
-    likes,
-})
-
 const like = (like) => ({
     type: ADD_ONE,
     like
@@ -106,30 +101,6 @@ export const deleteLike = (like) => async (dispatch) => {
         return likeInfo;
     }
 }
-// export const editPost = (post) => async (dispatch) => {
-//     const response = await fetch(`/api/posts/edit/${post.id}`, {
-//         method: "PUT",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(post)
-//     });
-//     if (response.ok) {
-//         const editPost = await response.json();
-//         dispatch(editOne(editPost))
-//         return editPost;
-//     }
-// }
-
-// export const hasLikedlike = (post_id,user_id) => async(dispatch) => {
-//     const response = await fetch(`/api/likes/${post_id}/${user_id}/`)
-//     if (response.ok) {
-//         const liketurn = await response.json();
-//         console.log(liketurn, typeof liketurn, 'THIS IS LIKED LOOK AT HIM',post_id, user_id)
-//         dispatch(likeliked(liketurn))
-//         return liketurn
-//     }
-// }
 
 export const userPostLikes = (user_id) => async(dispatch) => {
     const response = await fetch(`/api/likes/${user_id}/`)
@@ -141,30 +112,6 @@ export const userPostLikes = (user_id) => async(dispatch) => {
     }
 
 }
-
-// export const getCommentLikes = (id) => async (dispatch) => {
-//     const response = await fetch(`/api/likes/${id}/`)
-//     if (response.ok) {
-//         const likes = await response.json();
-//         dispatch(loadCommentLikes(likes))
-//         return likes
-//     }
-// }
-
-// export const removeLike = (payload) => async (dispatch) => {
-//     const response = await fetch(`/api/comments/delete/`, {
-//         method: "DELETE",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(payload),
-//     });
-//     if (response.ok) {
-//         const id = await response.json();
-//         dispatch(unlike(id))
-//         return
-//     }
-// }
 
 const initialState = {
     Plikes: {},
