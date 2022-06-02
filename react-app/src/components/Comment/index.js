@@ -36,14 +36,14 @@ const CommentsForm = ({ postId }) => {
         //await dispatch(getComments(postId));
     }
 
-
+//delete me
     return (
         <div className='view-post-comments-div'>
             <div className='written-comments-div'>
             {Object?.values(comments).map((comment) =>
             (<>
                 <div className='comments-section-div' key={`div${comment?.id}`}>
-                    <div>
+                    <div className='user-img-div'>
                     <img className='comment-user-img' alt={`UserDisplay`}src={`${comment?.user_image}`} />
                     </div>
                     <div className='comments-section-info'>
