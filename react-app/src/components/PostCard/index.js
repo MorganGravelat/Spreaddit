@@ -91,11 +91,11 @@ const PostCard = ({post, likesCount, myLikes, likeInfo}) => {
     console.log(likeInfo,'likeINFO IS HERE TO STAY!')
     return (
         <div className="post-div" key={post?.id}>
-            <div className="likes-bar">
+            {/* <div className="likes-bar">
                 {user_id ? <button onClick={() => liker()} className={liked <= 0 ? 'like-button-deactivated' : 'like-button-selected'}><h1>👍</h1></button> : <></>}
                     <h1>{likes}</h1>
                 {user_id ? <button onClick={() => disliker()} className={liked >= 0 ? 'dislike-button-deactivated' : 'dislike-button-selected'}><h1>👎</h1></button> : <></>}
-            </div>
+            </div> */}
             <div className="post-detail-div">
               <NavLink  className="post-title"exact to={`/posts/${post.post_id ? post?.post_id : post?.id}`}>
                 <h3 style={{margin: "10px 0px 0px 0px"}}>{post.title ? post?.title : post?.post_title}</h3>
