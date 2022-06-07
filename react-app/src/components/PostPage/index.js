@@ -200,6 +200,7 @@ function PostPage() {
                 </div>
             </div>
             <FooterComponent />
+            <div className='black-line-div' />
             <CommentsForm postId={postId} />
         </div>
     );
