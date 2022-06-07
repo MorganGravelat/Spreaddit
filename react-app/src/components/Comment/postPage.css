@@ -200,11 +200,14 @@
     color: white;
     background-color: rgb(243, 94, 94);
     transition: background-color .5s;
+    transition: color .5s;
 }
 
 .delete-comment-button:hover {
     background-color: rgb(250, 11, 11);
+    color: rgb(255, 190, 190);
     transition: background-color .5s;
+    transition: color .5s;
 }
 
 .comments-section-info {
